@@ -10,7 +10,11 @@
     pointer-events: none;
     font-size: 12px;
   }
-  .maps-container { display: flex; gap: 20px; flex-wrap: wrap; }
+  .maps-container { 
+    display: flex; 
+    gap: 20px; 
+    flex-wrap: wrap; 
+}
 
   .tooltip {
       position: absolute;
