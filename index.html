@@ -18,12 +18,44 @@
   </header>
 
   <main>
+    <!-- ============================================= -->
+    <!--  Project Overview                   -->
+    <!-- ============================================= -->
+
+    <section>
+        <h2>Checkpoint - Project Overview</h2>
+        <h3>CalFire and California Department of Fish and Wildlife Data:</h3>
+        <p>We like the idea of modeling fires like we did in Project 3, 
+            but wanted to work with different data that was more relevant to us here in California. 
+            The Cal-Fire data is full of excellent data sets. Not only is the data already in an interactive format when you access it, 
+            making understanding everything much easier, but also all their data sets are easily accessible and come in various different formats. 
+            It's really very useful to be able to make a map with geojson files while also working with the specific data in the form of a csv. 
+            We think the data available at Cal-Fire will let us create a visualization that is more focused than our Project 3 and lets 
+            us convey more interesting information.</p>
+        <h3>What we intend to do:</h3>
+        <p>Our big idea is we want to model what kinds of ecosystems in California are more fire resistant than others. 
+            There's kind of two halves to that: 
+            The first is to look at which areas are more fire prone than others. 
+            This should be the easier part since Cal-Fire already has data on fire risk. 
+            We can also determine which areas are more fire prone than others by just counting the number of fires in a designated seed zone and 
+            standardizing by dividing by the area of the seed zone.
+            The second part to this is measuring how severely fires affected a given ecosystem type. 
+            We like CalFire's California Vegetation Burn Severity Data Viewer which does a great job displaying that info but it's been really tricky 
+            to actually work with that data to create a different visualization. 
+            We may end up giving up on this idea if we can't figure it out or find a different, similar data set.
+            In the end all of this stuff could end up being too complicated (or the bigger problem, 
+            our GeoJSON data is just too big to handle using simple D3 techniques), and we may shift our stance. 
+            It may be better to model fire risk associated with different ecosystem types in California and to 
+            then create a general map of fire risk depending on what ecosystem is where.
+        </p>
+    </section>
+
 
     <!-- ============================================= -->
     <!--  Seed Zone Visualizations                     -->
     <!-- ============================================= -->
     <section id="seed-zones-section">
-      <h1>California Seed Zones</h1>
+      <h2>California Seed Zones</h2>
 
       <p>
         This layer maps the California tree seed zones originally published by the U.S. Forest Service and CAL FIRE.
@@ -50,15 +82,26 @@
     <!-- ============================================= -->
     <section id="rare-veg-section">
       <h2>California Rare Vegetation Map</h2>
+      <p>This map displays rare vegetataion found across California based on California Department of Fish and Wildlife data. 
+        Hovering over the data enables the viewer to see a list of rare vegetation and the county and CDFW designated "Eco Section".</p>
       <svg id="map" width="800" height="500"></svg>
       <div class="tooltip" id="tooltip" style="opacity:0"></div>
+    </section>
+
+    <!-- ============================================= -->
+    <!--  Line Plots                         -->
+    <!-- ============================================= -->
+    <section>
+        <h2>Modeling the Increase in Number of Fires and Acreage Burned</h2>
+        <img class = "line-plot-img" src="fire-incidents.png" alt="line plot growth in fire incidents since data collection began">
+        <img class = "line-plot-img"  src="acreage-burned.png" alt="line plot showing acreage burned since data collection began">
     </section>
 
     <!-- ============================================= -->
     <!--  Writeup Section                              -->
     <!-- ============================================= -->
     <section id="writeup">
-      <h2>Project Writeup</h2>
+      <h2>Inital Prototype Writeup</h2>
 
       <h3>1. What have you done so far?</h3>
       <p>4 sentences</p>

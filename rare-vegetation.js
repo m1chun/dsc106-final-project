@@ -13,7 +13,7 @@
     .center([0, 37.5])
     .rotate([120, 0])
     .parallels([34, 40.5])
-    .scale(2800)
+    .scale(4200)
     .translate([width / 2, height / 2]);
 
   const path = d3.geoPath().projection(projection);
