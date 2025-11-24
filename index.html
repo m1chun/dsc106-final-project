@@ -3,8 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <title>DSC 106 Final Project - Initial Prototype</title>
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- D3 -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
+
 <body>
   <header>
     <h1>DSC 106 Final Project - Initial Prototype</h1>
@@ -12,91 +18,64 @@
   </header>
 
   <main>
-    <!-- ===== Visualization Section ===== -->
-    <section id="visualization">
-      <h2>Current Prototype Visualization</h2>
-      <p class="section-intro">
-        This is a simple example visualization. Replace the labels and values
-        with data that matches your actual project later.
+
+    <!-- ============================================= -->
+    <!--  Seed Zone Visualizations                     -->
+    <!-- ============================================= -->
+    <section id="seed-zones-section">
+      <h1>California Seed Zones</h1>
+
+      <p>
+        This layer maps the California tree seed zones originally published by the U.S. Forest Service and CAL FIRE.
+        The 85 seed zones are defined by climatic, topographic, and soil conditions that determine plant adaptability.
+        Zones are labeled using a three-digit system where each digit represents region, subregion, and subzone.
+        These boundaries follow natural or physical features when possible.
       </p>
 
-      <!-- Bar chart container -->
-      <div class="chart" aria-label="Example bar chart with interactive bars">
-        <button class="bar" style="--value: 80" data-label="Category A" data-value="80">
-          <span class="bar-label">A</span>
-        </button>
-        <button class="bar" style="--value: 55" data-label="Category B" data-value="55">
-          <span class="bar-label">B</span>
-        </button>
-        <button class="bar" style="--value: 35" data-label="Category C" data-value="35">
-          <span class="bar-label">C</span>
-        </button>
-        <button class="bar" style="--value: 65" data-label="Category D" data-value="65">
-          <span class="bar-label">D</span>
-        </button>
-      </div>
+      <div class="maps-container">
+        <div>
+          <h2>Seed Zones</h2>
+          <svg id="map1" width="300" height="300"></svg>
+        </div>
 
-      <!-- Dynamic text that updates on interaction -->
-      <div id="bar-info" class="bar-info">
-        Hover or focus a bar to see details.
+        <div>
+          <h2>Seed Zones - Colored By Subzone</h2>
+          <svg id="map2" width="300" height="300"></svg>
+        </div>
       </div>
     </section>
 
-    <!-- ===== Writeup Section ===== -->
+    <!-- ============================================= -->
+    <!--  Rare Vegetation Map                         -->
+    <!-- ============================================= -->
+    <section id="rare-veg-section">
+      <h2>California Rare Vegetation Map</h2>
+      <svg id="map" width="800" height="500"></svg>
+      <div class="tooltip" id="tooltip" style="opacity:0"></div>
+    </section>
+
+    <!-- ============================================= -->
+    <!--  Writeup Section                              -->
+    <!-- ============================================= -->
     <section id="writeup">
       <h2>Project Writeup</h2>
 
       <h3>1. What have you done so far?</h3>
-      <p>
-        <!-- Write at least 4 sentences here. Example placeholder: -->
-        I have started by exploring the dataset and identifying the main questions
-        I want my visualization to answer. I created an initial sketch and then
-        built this basic bar chart as a proof of concept for my interaction design.
-        Right now, the chart uses placeholder values, but the structure and
-        interaction are in place. My next step is to connect this layout to the
-        cleaned data that I plan to use in the final project.
-      </p>
+      <p>4 sentences</p>
 
       <h3>2. What will be the most challenging part of your project to design and why?</h3>
-      <p>
-        <!-- Write at least 4 sentences here. Example placeholder: -->
-        The most challenging part of my project will likely be designing
-        interactions that feel intuitive while still revealing deeper insights in
-        the data. I need to balance visual clarity with the amount of information
-        I show at once. Another difficulty will be ensuring that the design still
-        works well on different screen sizes and devices. Finally, I expect that
-        tuning the color choices and layout so that trends are obvious at a glance
-        will take several iterations.
-      </p>
+      <p>4 sentences</p>
     </section>
+
   </main>
 
   <footer>
     <p>Created by Dynamic Super Chickens 106</p>
   </footer>
 
-  <!-- ===== Simple Interaction Script ===== -->
-  <script>
-    const bars = document.querySelectorAll(".bar");
-    const info = document.getElementById("bar-info");
+  <!-- Load visualizations LAST -->
+  <script src="seed-zones.js"></script>
+  <script src="rare-vegetation.js"></script>
 
-    function showInfo(event) {
-      const bar = event.currentTarget;
-      const label = bar.getAttribute("data-label");
-      const value = bar.getAttribute("data-value");
-      info.textContent = `${label}: ${value}`;
-    }
-
-    function clearInfo() {
-      info.textContent = "Hover or focus a bar to see details.";
-    }
-
-    bars.forEach((bar) => {
-      bar.addEventListener("mouseenter", showInfo);
-      bar.addEventListener("focus", showInfo);
-      bar.addEventListener("mouseleave", clearInfo);
-      bar.addEventListener("blur", clearInfo);
-    });
-  </script>
 </body>
 </html>
