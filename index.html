@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DSC 106 Final Project - Initial Prototype</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>DSC 106 Final Project - Initial Prototype</h1>
+    <p class="subtitle">David Goldstein, Margot Nissen, and Mieko Chun</p>
+  </header>
+
+  <main>
+    <!-- ===== Visualization Section ===== -->
+    <section id="visualization">
+      <h2>Current Prototype Visualization</h2>
+      <p class="section-intro">
+        This is a simple example visualization. Replace the labels and values
+        with data that matches your actual project later.
+      </p>
+
+      <!-- Bar chart container -->
+      <div class="chart" aria-label="Example bar chart with interactive bars">
+        <button class="bar" style="--value: 80" data-label="Category A" data-value="80">
+          <span class="bar-label">A</span>
+        </button>
+        <button class="bar" style="--value: 55" data-label="Category B" data-value="55">
+          <span class="bar-label">B</span>
+        </button>
+        <button class="bar" style="--value: 35" data-label="Category C" data-value="35">
+          <span class="bar-label">C</span>
+        </button>
+        <button class="bar" style="--value: 65" data-label="Category D" data-value="65">
+          <span class="bar-label">D</span>
+        </button>
+      </div>
+
+      <!-- Dynamic text that updates on interaction -->
+      <div id="bar-info" class="bar-info">
+        Hover or focus a bar to see details.
+      </div>
+    </section>
+
+    <!-- ===== Writeup Section ===== -->
+    <section id="writeup">
+      <h2>Project Writeup</h2>
+
+      <h3>1. What have you done so far?</h3>
+      <p>
+        <!-- Write at least 4 sentences here. Example placeholder: -->
+        I have started by exploring the dataset and identifying the main questions
+        I want my visualization to answer. I created an initial sketch and then
+        built this basic bar chart as a proof of concept for my interaction design.
+        Right now, the chart uses placeholder values, but the structure and
+        interaction are in place. My next step is to connect this layout to the
+        cleaned data that I plan to use in the final project.
+      </p>
+
+      <h3>2. What will be the most challenging part of your project to design and why?</h3>
+      <p>
+        <!-- Write at least 4 sentences here. Example placeholder: -->
+        The most challenging part of my project will likely be designing
+        interactions that feel intuitive while still revealing deeper insights in
+        the data. I need to balance visual clarity with the amount of information
+        I show at once. Another difficulty will be ensuring that the design still
+        works well on different screen sizes and devices. Finally, I expect that
+        tuning the color choices and layout so that trends are obvious at a glance
+        will take several iterations.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Created by Dynamic Super Chickens 106</p>
+  </footer>
+
+  <!-- ===== Simple Interaction Script ===== -->
+  <script>
+    const bars = document.querySelectorAll(".bar");
+    const info = document.getElementById("bar-info");
+
+    function showInfo(event) {
+      const bar = event.currentTarget;
+      const label = bar.getAttribute("data-label");
+      const value = bar.getAttribute("data-value");
+      info.textContent = `${label}: ${value}`;
+    }
+
+    function clearInfo() {
+      info.textContent = "Hover or focus a bar to see details.";
+    }
+
+    bars.forEach((bar) => {
+      bar.addEventListener("mouseenter", showInfo);
+      bar.addEventListener("focus", showInfo);
+      bar.addEventListener("mouseleave", clearInfo);
+      bar.addEventListener("blur", clearInfo);
+    });
+  </script>
+</body>
+</html>
