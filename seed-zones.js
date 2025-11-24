@@ -1,5 +1,11 @@
-const width = 700;
-const height = 700;
+(function() {
+
+// =====================================================
+// =============== Seed Zones Visualization ============
+// =====================================================
+
+const width = 400;
+const height = 400;
 
 // Margins for titles + spacing
 const margin = { top: 50, right: 20, bottom: 20, left: 20 };
@@ -8,11 +14,14 @@ const innerHeight = height - margin.top - margin.bottom;
 
 // Projection for California
 const projection = d3.geoAlbers()
-  .center([0, 37.25])
+  .center([1, 36])
   .rotate([120.5, 0])
   .parallels([34, 40.5])
-  .scale(3600) // bigger scale for 700x700 map
-  .translate([innerWidth / 2, innerHeight / 2]);
+  .scale(2050)              
+  .translate([
+    innerWidth / 2,
+    innerHeight / 2 + 20   
+  ]);
 
 const path = d3.geoPath().projection(projection);
 
@@ -31,7 +40,7 @@ function addLabels(g, data) {
       .attr("dy", "0.35em")
       .attr("font-size", "12px")
       .attr("font-weight", "bold")
-      .attr("stroke", "white")       // halo
+      .attr("stroke", "white")
       .attr("stroke-width", 3)
       .attr("paint-order", "stroke")
       .text(d => d.properties.SEED_ZONE);
@@ -44,7 +53,6 @@ const svg1 = d3.select("#map1")
   .attr("width", width)
   .attr("height", height);
 
-// Border
 svg1.append("rect")
   .attr("x", 0).attr("y", 0)
   .attr("width", width).attr("height", height)
@@ -52,22 +60,10 @@ svg1.append("rect")
   .attr("stroke", "#333")
   .attr("stroke-width", 2);
 
-// Title
-svg1.append("text")
-  .attr("x", width / 2)
-  .attr("y", 30)
-  .attr("text-anchor", "middle")
-  .attr("font-size", "20px")
-  .attr("font-weight", "bold")
-  .text("Seed Zones – Single Color Map");
-
-const g1 = svg1.append("g").attr(
-  "transform",
-  `translate(${margin.left}, ${margin.top})`
-);
+const g1 = svg1.append("g")
+  .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 d3.json("ca-seed-zones.geojson").then(data => {
-  // Paths
   g1.selectAll("path")
     .data(data.features)
     .join("path")
@@ -85,7 +81,6 @@ d3.json("ca-seed-zones.geojson").then(data => {
       })
       .on("mouseout", () => tooltip.style("display", "none"));
 
-  // Labels
   addLabels(g1, data);
 });
 
@@ -96,7 +91,6 @@ const svg2 = d3.select("#map2")
   .attr("width", width)
   .attr("height", height);
 
-// Border
 svg2.append("rect")
   .attr("x", 0).attr("y", 0)
   .attr("width", width).attr("height", height)
@@ -104,25 +98,12 @@ svg2.append("rect")
   .attr("stroke", "#333")
   .attr("stroke-width", 2);
 
-// Title
-svg2.append("text")
-  .attr("x", width / 2)
-  .attr("y", 30)
-  .attr("text-anchor", "middle")
-  .attr("font-size", "20px")
-  .attr("font-weight", "bold")
-  .text("Seed Zones – Subzone Color Map");
+const g2 = svg2.append("g")
+  .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-const g2 = svg2.append("g").attr(
-  "transform",
-  `translate(${margin.left}, ${margin.top})`
-);
-
-// Color palette
 const color = d3.scaleOrdinal(d3.schemeCategory10);
 
 d3.json("ca-seed-zones.geojson").then(data => {
-  // Polygons
   g2.selectAll("path")
     .data(data.features)
     .join("path")
@@ -140,6 +121,7 @@ d3.json("ca-seed-zones.geojson").then(data => {
       })
       .on("mouseout", () => tooltip.style("display", "none"));
 
-  // Labels
   addLabels(g2, data);
 });
+
+})(); // END IIFE
