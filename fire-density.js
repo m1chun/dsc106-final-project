@@ -58,7 +58,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const svg = d3.select("#fire-map")
             .attr("viewBox", `0 0 ${width} ${height}`);
 
-        const projection = d3.geoMercator().fitSize([width, height], data);
+        const padding = 30; 
+
+        const projection = d3.geoMercator()
+            .fitExtent(
+                [[padding, padding], [width - padding, height - padding]],
+                data
+            );
         const path = d3.geoPath().projection(projection);
 
         const mapGroup = svg.append("g");
