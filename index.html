@@ -50,6 +50,15 @@
         </p>
     </section>
 
+    <!-- ============================================= -->
+    <!--  Line Plots                         -->
+    <!-- ============================================= -->
+    <section>
+        <h2>Modeling the Increase in Number of Fires and Acreage Burned</h2>
+        <img class = "line-plot-img" src="fire-incidents.png" alt="line plot growth in fire incidents since data collection began">
+        <img class = "line-plot-img"  src="acreage-burned.png" alt="line plot showing acreage burned since data collection began">
+    </section>
+
 
     <!-- ============================================= -->
     <!--  Seed Zone Visualizations                     -->
@@ -89,12 +98,24 @@
     </section>
 
     <!-- ============================================= -->
-    <!--  Line Plots                         -->
+    <!--  Fire Density Map by Seed Zone                -->
     <!-- ============================================= -->
-    <section>
-        <h2>Modeling the Increase in Number of Fires and Acreage Burned</h2>
-        <img class = "line-plot-img" src="fire-incidents.png" alt="line plot growth in fire incidents since data collection began">
-        <img class = "line-plot-img"  src="acreage-burned.png" alt="line plot showing acreage burned since data collection began">
+    <section id="fire-density-section">
+        <h2>Regional Fire Density Map - Labeled Zones</h2>
+        <p>
+            Fill Color indicates Fire Density (Fires / sq.km). The SEED_ZONE identifier is shown inside each region.
+        </p>
+
+        <!-- SVG Container for the D3 Map -->
+        <div id="map-container">
+            <svg id="fire-map"></svg>
+        </div>
+
+        <!-- Legend -->
+        <div id="legend">
+            <h3>Density (Color) Key</h3>
+            <div id="color-legend"></div>
+        </div>
     </section>
 
     <!-- ============================================= -->
@@ -119,6 +140,7 @@
   <!-- Load visualizations LAST -->
   <script src="seed-zones.js"></script>
   <script src="rare-vegetation.js"></script>
+  <script src="fire-density.js"></script>
 
 </body>
 </html>
