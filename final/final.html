@@ -4,8 +4,11 @@
   <meta charset="UTF-8" />
   <title>DSC 106 Final Project – Scrollytelling</title>
 
-  <!-- Main CSS -->
+  <!-- ✅ Main Scrolly CSS -->
   <link rel="stylesheet" href="final-style.css" />
+
+  <!-- ✅ Fire Density CSS (MUST COME AFTER) -->
+  <link rel="stylesheet" href="fire-density.css" />
 
   <!-- D3 -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -105,11 +108,13 @@
       </div>
 
       <div id="vis-rare-veg" class="scrolly-vis">
+        <h3>Rare Vegetation Mapped</h3>
         <svg id="map" width="800" height="500"></svg>
         <div class="tooltip" id="tooltip" style="opacity:0"></div>
       </div>
 
       <div id="vis-fire-density" class="scrolly-vis">
+        <h3>Fire Density By Seed Zone</h3>
         <svg id="fire-map"></svg>
         <div id="legend">
           <h3>Fire Density Legend</h3>
