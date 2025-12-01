@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DSC 106 Final Project - Initial Prototype</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- D3 -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>DSC 106 Final Project - Initial Prototype</h1>
+    <p class="subtitle">David Goldstein, Margot Nissen, and Mieko Chun</p>
+  </header>
+
+  <main>
+    <!-- ============================================= -->
+    <!--  Project Overview                   -->
+    <!-- ============================================= -->
+
+    <section>
+        <h2>Checkpoint - Project Overview</h2>
+        <h3>CalFire and California Department of Fish and Wildlife Data:</h3>
+        <p>We like the idea of modeling fires like we did in Project 3, 
+            but wanted to work with different data that was more relevant to us here in California. 
+            The Cal-Fire data is full of excellent data sets. Not only is the data already in an interactive format when you access it, 
+            making understanding everything much easier, but also all their data sets are easily accessible and come in various different formats. 
+            It's really very useful to be able to make a map with geojson files while also working with the specific data in the form of a csv. 
+            We think the data available at Cal-Fire will let us create a visualization that is more focused than our Project 3 and lets 
+            us convey more interesting information.</p>
+        <h3>What we intend to do:</h3>
+        <p>Our big idea is we want to model what kinds of ecosystems in California are more fire resistant than others. 
+            There's kind of two halves to that: 
+            The first is to look at which areas are more fire prone than others. 
+            This should be the easier part since Cal-Fire already has data on fire risk. 
+            We can also determine which areas are more fire prone than others by just counting the number of fires in a designated seed zone and 
+            standardizing by dividing by the area of the seed zone.
+            The second part to this is measuring how severely fires affected a given ecosystem type. 
+            We like CalFire's California Vegetation Burn Severity Data Viewer which does a great job displaying that info but it's been really tricky 
+            to actually work with that data to create a different visualization. 
+            We may end up giving up on this idea if we can't figure it out or find a different, similar data set.
+            In the end all of this stuff could end up being too complicated (or the bigger problem, 
+            our GeoJSON data is just too big to handle using simple D3 techniques), and we may shift our stance. 
+            It may be better to model fire risk associated with different ecosystem types in California and to 
+            then create a general map of fire risk depending on what ecosystem is where.
+        </p>
+    </section>
+
+    <!-- ============================================= -->
+    <!--  Line Plots                         -->
+    <!-- ============================================= -->
+    <section>
+        <h2>Modeling the Increase in Number of Fires and Acreage Burned</h2>
+        <img class = "line-plot-img" src="fire-incidents.png" alt="line plot growth in fire incidents since data collection began">
+        <img class = "line-plot-img"  src="acreage-burned.png" alt="line plot showing acreage burned since data collection began">
+    </section>
+
+
+    <!-- ============================================= -->
+    <!--  Seed Zone Visualizations                     -->
+    <!-- ============================================= -->
+    <section id="seed-zones-section">
+      <h2>California Seed Zones</h2>
+
+      <p>
+        This layer maps the California tree seed zones originally published by the U.S. Forest Service and CAL FIRE.
+        The 85 seed zones are defined by climatic, topographic, and soil conditions that determine plant adaptability.
+        Zones are labeled using a three-digit system where each digit represents region, subregion, and subzone.
+        These boundaries follow natural or physical features when possible.
+      </p>
+
+      <div class="maps-container">
+        <div>
+          <h2>Seed Zones</h2>
+          <svg id="map1"></svg>
+        </div>
+
+        <div>
+          <h2>Seed Zones - Colored By Subzone</h2>
+          <svg id="map2"></svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!--  Rare Vegetation Map                         -->
+    <!-- ============================================= -->
+    <section id="rare-veg-section">
+      <h2>California Rare Vegetation Map</h2>
+      <p>This map displays rare vegetataion found across California based on California Department of Fish and Wildlife data. 
+        Hovering over the data enables the viewer to see a list of rare vegetation and the county and CDFW designated "Eco Section".</p>
+      <svg id="map" width="800" height="500"></svg>
+      <div class="tooltip" id="tooltip" style="opacity:0"></div>
+    </section>
+
+    <!-- ============================================= -->
+    <!--  Fire Density Map by Seed Zone                -->
+    <!-- ============================================= -->
+    <section id="fire-density-section">
+        <h2>Regional Fire Density Map By Seed Zone</h2>
+        <p>
+            Fill Color indicates Fire Density (Fires / sq.km). The Seed Zone identifier is shown inside each region.
+        </p>
+
+        <!-- SVG Container for the D3 Map -->
+        <div id="map-container">
+            <svg id="fire-map"></svg>
+        </div>
+
+        <!-- Legend -->
+        <div id="legend">
+            <h3>Fire Density Legend</h3>
+            <div id="color-legend"></div>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!--  Writeup Section                              -->
+    <!-- ============================================= -->
+    <section id="writeup">
+      <h2>Inital Prototype Writeup</h2>
+
+      <h3>1. What have you done so far?</h3>
+      <p>So far we have creates some basic plots and visualizations of California to get a sense of what our final project could look like.
+        We are most proud of our last visualization of the fire density per seed zone and we might make this our starting visualization that viewers can click on
+        to go into specific details of each seed zone. We also included a visualization about rare vegetation to see if we could see a pattern between 
+        wildfires and those areas in California. Our charts of fires in California provide good background information for the viewers so we can inform them on why 
+        this topic is so important for combatting climate change.
+      </p>
+
+      <h3>2. What will be the most challenging part of your project to design and why?</h3>
+      <p>Incorporating the animation and making the map transitions smooth through clicks and hovers will be the most challenging part.
+        We have an overall sense of what we want to project to look like, but turning it into D3 and JS code is a little tricky. We have a pretty good understanting on
+        how to create visualizations, but we want to user's side of the website to be easy to use and look aesthetically pleasing as they scroll through
+        the project. We hope that with the skills we learned in project 3, lab 8, and the recent lectures, we will have a general foundation for the website. 
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Created by Dynamic Super Chickens 106</p>
+  </footer>
+
+  <!-- Load visualizations LAST -->
+  <script src="seed-zones.js"></script>
+  <script src="rare-vegetation.js"></script>
+  <script src="fire-density.js"></script>
+
+</body>
+</html>
