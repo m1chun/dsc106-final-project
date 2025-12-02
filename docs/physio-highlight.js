@@ -82,20 +82,20 @@ document.addEventListener("DOMContentLoaded", () => {
     physioStatsBoxes.push(statsBox);
 
     const width = 800;
-    const height = 800;
+    const height = 650;
 
-const g = svg
-  .attr("width", width)
-  .attr("height", height)
-  .append("g")
-  .attr("transform", "translate(-300, -70)");
+    const g = svg
+      .attr("width", width)
+      .attr("height", height)
+      .append("g");
 
-    const projection = d3.geoAlbers()
-      .center([-5, 36])
-      .rotate([120.5, 0])
-      .parallels([34, 40.5])
-      .scale(3000)
-      .translate([width / 2, height / 2]);
+const projection = d3.geoAlbers()
+  .center([2, 35])              // ✅ pull map LEFT
+  .rotate([120.5, 0])
+  .parallels([34, 40.5])
+  .scale(2600)                   // ✅ full CA visible
+  .translate([width * 0.45, height * 0.55]);  // ✅ centered + slightly down
+
 
     const path = d3.geoPath().projection(projection);
 

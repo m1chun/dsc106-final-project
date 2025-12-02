@@ -296,7 +296,24 @@ header h1 {
   align-items: center;
 }
 
+#physio-title {
+  font-size: 1.1rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  color: #7f1d1d;
+}
+
+.physio-stats:empty::before {
+  content: "Scroll to view regional statistics";
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* ✅ TURN MULTI-REGION STATS INTO A 2x2 GRID */
 .physio-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);  /* ✅ 2 columns */
+  gap: 1rem 1.25rem;                      /* ✅ vertical + horizontal spacing */
   position: absolute;     /* ✅ detach from grid */
   top: 1rem;           /* ✅ top right corner */
   right: 1.25rem;
@@ -308,30 +325,31 @@ header h1 {
   color: #111827;
   font-size: 0.9rem;
 
-  min-width: 240px;
-  max-width: 300px;
+  min-width: 220px;
+  max-width: 380px;
 
   z-index: 25;
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
   backdrop-filter: blur(6px);
 }
 
-.physio-stat-row {
-  margin-bottom: 0.2rem;
-}
-
-#physio-title {
-  font-size: 1.1rem;
+/* ✅ BIGGER REGION TITLE */
+.physio-stats h4 {
+  font-size: 1rem;     /* 🔥 makes title clearly larger */
   font-weight: 900;
-  margin-bottom: 0.5rem;
-  color: #7f1d1d;
+  margin-top: 0;
+  margin-bottom: 0.3rem; /* ✅ reduces gap below title */
+  color: #0f172a;
 }
 
 .physio-stats p {
   margin: 0.25rem 0;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
 }
 
+/* ============================= */
+/* MAP HIGHLIGHT */
+/* ============================= */
 /* ✅ UNCLIP THE MAP */
 #scrolly-graphic {
   overflow: visible;
@@ -355,13 +373,6 @@ header h1 {
   gap: 1rem;
   align-items: center;
 }
-
-.physio-stats:empty::before {
-  content: "Scroll to view regional statistics";
-  color: #6b7280;
-  font-style: italic;
-}
-
 
 /* ============================= */
 /* 🧾 FOOTER */
