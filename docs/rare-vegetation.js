@@ -32,14 +32,14 @@ document.addEventListener("DOMContentLoaded", () => {
       .parallels([34, 40.5])
       .scale(3400)
       .translate([
-        innerWidth / 2,                // ✅ SAME X CENTER
-        innerHeight / 2 + 20           // ✅ SAME Y OFFSET
+        innerWidth / 2,
+        innerHeight / 2 + 20
       ]);
 
     const path = d3.geoPath().projection(projection);
 
     // ==============================
-    // ✅ TOOLTIP (MATCHED)
+    // ✅ TOOLTIP
     // ==============================
     const tooltip = d3.select("body")
       .append("div")
@@ -69,6 +69,59 @@ document.addEventListener("DOMContentLoaded", () => {
         p.RareVeg === "Yes" ||
         (p.RareVeg_types && p.RareVeg_types !== "None")
       );
+    }
+
+    // ==============================
+    // ✅ MATCHED SVG LEGEND (TOP RIGHT)
+    // ==============================
+    function drawLegend() {
+      const legend = svg.append("g")
+        .attr("class", "rare-veg-legend")
+        .attr("transform", `translate(${width - 360}, 40)`);
+
+      // Background
+      legend.append("rect")
+        .attr("width", 320)
+        .attr("height", 110)
+        .attr("rx", 18)
+        .attr("fill", "rgba(255,255,255,0.96)")
+        .attr("stroke", "#e5e7eb")
+        .attr("stroke-width", 2);
+
+      // Title
+      legend.append("text")
+        .attr("x", 160)
+        .attr("y", 30)
+        .attr("text-anchor", "middle")
+        .attr("font-weight", "800")
+        .attr("font-size", "18px")
+        .attr("fill", "#7f1d1d")
+        .text("Rare Vegetation");
+
+      const legendData = [
+        { label: "Rare Vegetation", color: rareColor },
+        { label: "No Rare Vegetation Recorded", color: nonRareColor }
+      ];
+
+      const items = legend.selectAll(".legend-item")
+        .data(legendData)
+        .enter()
+        .append("g")
+        .attr("transform", (d, i) => `translate(24, ${50 + i * 26})`);
+
+      items.append("rect")
+        .attr("width", 18)
+        .attr("height", 18)
+        .attr("rx", 4)
+        .attr("fill", d => d.color)
+        .attr("stroke", "#111");
+
+      items.append("text")
+        .attr("x", 30)
+        .attr("y", 13)
+        .attr("font-size", "14px")
+        .attr("fill", "#111")
+        .text(d => d.label);
     }
 
     // ==============================
@@ -108,6 +161,9 @@ document.addEventListener("DOMContentLoaded", () => {
             .style("opacity", 0)
             .style("display", "none");
         });
+
+      // ✅ DRAW MATCHED LEGEND
+      drawLegend();
 
     });
 
