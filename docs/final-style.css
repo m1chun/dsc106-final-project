@@ -75,6 +75,9 @@ header h1 {
 
 #scrolly-text {
   padding-bottom: 85vh;
+  min-width: 480px;
+  max-width: 480px;
+  width: 480px;
 }
 
 .step {
@@ -214,22 +217,13 @@ header h1 {
 }
 
 /* ============================= */
-/* 🧯 MAP POSITIONING */
+/* 🗺️ GLOBAL MAP CSS */
 /* ============================= */
-#map1 {
-  transform: translateX(-120px);
-}
-
-#map {
-  transform: translateX(-120px);
-}
-
-#fire-map {
-  transform: translateX(-120px);
-}
-
+#map1,
+#map,
+#fire-map,
 #map-physio {
-  transform: translateX(-120px);   /* ✅ NEW: Physio Regions */
+  transform: translateX(-120px);
 }
 
 /* ============================= */
