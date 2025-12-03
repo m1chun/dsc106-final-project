@@ -78,6 +78,13 @@ html, body {
   overflow: hidden;        /* ✅ prevents spill outside */
 }
 
+.column-left img {
+  width: 100%;
+  max-width: 720px;
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+}
+
 /* =============================== */
 /* ✅ RIGHT TEXT COLUMN */
 /* =============================== */
