@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>DSC 106 Final Project</title>
+
+  <!-- ✅ Main Scrolly CSS -->
+  <link rel="stylesheet" href="final-style.css" />
+
+
+  <!-- D3 -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <!-- Scrollama -->
+  <script src="https://unpkg.com/scrollama"></script>
+</head>
+
+<body>
+
+  <header>
+    <h1>Where California Burns: A Geographic Story of Wildfire Risk</h1>
+    <p class="subtitle">David Goldstein, Margot Nissen, and Mieko Chun</p>
+  </header>
+
+
+  <main id="scrolly">
+
+    <!-- ===================== -->
+    <!-- SCROLL TEXT COLUMN -->
+    <!-- ===================== -->
+    <div id="scrolly-text">
+
+      <div class="step">
+        <h2>Project Overview</h2>
+        <p>
+          We like the idea of modeling fires like we did in Project 3, but wanted to work with different data more
+          relevant to California.
+          Cal-Fire provides excellent interactive datasets in CSV and GeoJSON formats.
+        </p>
+        <p>
+          Our goal is to determine which ecosystems are more fire-resistant by examining both fire-prone regions and
+          severity patterns.
+        </p>
+      </div>
+
+      <div class="step">
+        <h2>Modeling Fire Growth Over Time</h2>
+        <p>
+          CalFire annually updates their database with new instances of fires that occured during each year. 
+          These charts show the rapid growth in wildfire incidents and acreage burned in California.
+        </p>
+      </div>
+
+      <div class="step">
+        <h2>California Seed Zones</h2>
+        <p>
+          California is divided into 85 seed zones based on climate and terrain. These determine plant adaptability and
+          fire behavior.
+        </p>
+      </div>
+
+      <div class="step">
+        <h2>California’s Major Physiographic & Climatic Regions</h2>
+        <p>
+          To better understand wildfire behavior, California can be divided into six broad
+          physiographic and climatic regions. Each region has distinct vegetation, moisture,
+          temperature, and wind patterns that strongly shape fire risk.
+        </p>
+      </div>
+
+    <div class="step" data-physio="North Coast Redwood" data-vis="vis-north-coast">
+        <h2>North Coast Redwood (090 Series)</h2>
+        <p>
+          This narrow fog belt stretches from southern Oregon to Monterey Bay. Constant coastal
+          moisture supports dense redwood forests with extremely high biomass.
+        </p>
+        <ul>
+          <li>Fog-dominated climate</li>
+          <li>Cool, moist conditions</li>
+          <li>Low natural ignition but extreme fuel loads</li>
+        </ul>
+      </div>
+
+    <div class="step" data-physio="Central Coast" data-vis="vis-central-coast">
+        <h2>Central Coast (100 Series)</h2>
+        <p>
+          This region extends from Monterey Bay to Santa Barbara and includes the Channel Islands.
+          Mediterranean climate dominates with wet winters and dry summers.
+        </p>
+        <ul>
+          <li>Chaparral and oak woodland</li>
+          <li>High coastal wind exposure</li>
+          <li>Frequent human-caused ignitions</li>
+        </ul>
+      </div>
+
+    <div class="step" data-physio="North Coast Interior" data-vis="vis-north-interior">
+        <h2>North Coast Interior (300 Series)</h2>
+        <p>
+          Located between the coastal fog belt and the Sacramento Valley, this region is warmer
+          and drier than the coast but still heavily forested.
+        </p>
+        <ul>
+          <li>Dense mixed conifer forests</li>
+          <li>Hotter summers than coastal zones</li>
+          <li>High lightning ignition risk</li>
+        </ul>
+      </div>
+
+    <div class="step" data-physio="West Slope Cascades–Sierra" data-vis="vis-west-slope">
+        <h2>West Slope Cascades–Sierra (500 Series)</h2>
+        <p>
+          This expansive region runs along the western face of the Sierra Nevada and Cascades.
+          It is one of California’s most fire-active forest belts.
+        </p>
+        <ul>
+          <li>Heavy winter snowpack → dry summer fuels</li>
+          <li>Frequent lightning storms</li>
+          <li>Large, fast-spreading crown fires</li>
+        </ul>
+      </div>
+
+    <div class="step" data-physio="East Slope Cascades–Sierra" data-vis="vis-east-slope">
+        <h2>East Slope Cascades–Sierra (700 Series)</h2>
+        <p>
+          The eastern slope lies in a rain shadow, producing much drier conditions than the west.
+          Vegetation is sparse but highly flammable.
+        </p>
+        <ul>
+          <li>Dry mountain climate</li>
+          <li>Strong downslope winds</li>
+          <li>Flashy, fast-moving fires</li>
+        </ul>
+      </div>
+
+<div class="step"
+     data-physio="Great Basin,Central Valley,SoCal Desert,SoCal Mountains"
+     data-vis="vis-catchall">
+             <h2>The Four Catchall Regions (900 Series)</h2>
+        <p>
+          This group contains four highly distinct landscapes that behave very differently
+          during wildfire events.
+        </p>
+        <ul>
+          <li><strong>950:</strong> Great Basin ( northeast California desert grasslands )</li>
+          <li><strong>960:</strong> Central Valley ( agricultural lowlands )</li>
+          <li><strong>980:</strong> Southern California Desert ( Mojave + Colorado )</li>
+          <li><strong>990:</strong> Southern California Mountains ( conifer forests )</li>
+        </ul>
+      </div>
+
+      <div class="step">
+        <h2>Rare Vegetation Across California</h2>
+        <p>
+          This map highlights rare vegetation and eco-sections tracked by the California Department of Fish and
+          Wildlife.
+        </p>
+      </div>
+
+      <div class="step">
+        <h2>Fire Density by Seed Zone</h2>
+        <p>
+          Fire density is calculated as fires per square kilometer to normalize comparisons across regions.
+        </p>
+      </div>
+
+      <div class="step">
+        <h2>Prototype Writeup</h2>
+
+        <h3>What Have We Done So Far?</h3>
+        <p>
+          We created baseline maps, fire charts, and an interactive fire density visualization to explore regional
+          wildfire trends.
+        </p>
+
+        <h3>Biggest Challenge</h3>
+        <p>
+          The most significant challenge will be creating smooth animated transitions and maintaining usability as we
+          expand interactivity.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- ===================== -->
+    <!-- STICKY GRAPHICS PANEL -->
+    <!-- ===================== -->
+    <div id="scrolly-graphic">
+
+      <!-- INTRO IMAGE -->
+      <div id="vis-intro" class="scrolly-vis active">
+        <img class="intro-img" src="fire-image.jpg" alt="Image of wildfire burning in California">
+        <p>A Fire Burning in Redlands, CA</p>
+      </div>
+
+      <!-- FIRE GROWTH IMAGES -->
+      <div id="vis-lines" class="scrolly-vis">
+        <img class="line-plot-img" src="fire-incidents.png" alt="Fire incidents">
+        <img class="line-plot-img" src="acreage-burned.png" alt="Acreage burned">
+      </div>
+
+      <!-- SEED ZONES MAP -->
+      <div id="vis-seed-zones" class="scrolly-vis">
+        <div class="maps-container">
+          <div>
+            <h3>Seed Zones</h3>
+            <svg id="map1"></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- ✅ REGION OVERVIEW IMAGE -->
+    <div id="vis-physio" class="scrolly-vis">
+      <h3>Six Physiographic and Climate Regions</h3>
+      <svg id="map-physio"></svg>
+    </div>
+
+    <div id="vis-north-coast" class="scrolly-vis">
+      <svg class="map-physio-highlight"></svg>
+      <div class="physio-stats"></div>
+    </div>
+
+    <div id="vis-central-coast" class="scrolly-vis">
+      <svg class="map-physio-highlight"></svg>
+      <div class="physio-stats"></div>
+    </div>
+
+    <div id="vis-north-interior" class="scrolly-vis">
+      <svg class="map-physio-highlight"></svg>
+      <div class="physio-stats"></div>
+    </div>
+
+    <div id="vis-west-slope" class="scrolly-vis">
+      <svg class="map-physio-highlight"></svg>
+      <div class="physio-stats"></div>
+    </div>
+
+    <div id="vis-east-slope" class="scrolly-vis">
+      <svg class="map-physio-highlight"></svg>
+      <div class="physio-stats"></div>
+    </div>
+
+    <div id="vis-catchall" class="scrolly-vis">
+      <svg class="map-physio-highlight"></svg>
+      <div class="physio-stats"></div>
+    </div>
+
+      <!-- RARE VEGETATION MAP -->
+      <div id="vis-rare-veg" class="scrolly-vis">
+        <h3>Rare Vegetation Mapped</h3>
+        <svg id="map" width="800" height="500"></svg>
+        <div class="tooltip" id="tooltip" style="opacity:0"></div>
+      </div>
+
+      <!-- FIRE DENSITY MAP -->
+      <div id="vis-fire-density" class="scrolly-vis">
+        <h3>Fire Density By Seed Zone</h3>
+        <svg id="fire-map"></svg>
+      </div>
+
+      <!-- END -->
+      <div id="vis-end" class="scrolly-vis"></div>
+
+    </div>
+
+  </main>
+
+  <footer>
+    <p>Created by Dynamic Super Chickens 106</p>
+  </footer>
+
+  <!-- SCROLL CONTROLLER -->
+  <script src="scrolly.js"></script>
+
+  <!-- YOUR ORIGINAL D3 FILES -->
+
+<!-- MAP DRAWERS -->
+<script src="seed-zones.js"></script>
+
+<!-- ✅ BASE PHYSIO MAP (DRAW ONCE) -->
+<script src="physio-zones.js"></script>
+
+<!-- ✅ HIGHLIGHT CONTROLLER (REACTS TO SCROLL) -->
+<script src="physio-highlight.js"></script>
+
+<script src="rare-vegetation.js"></script>
+<script src="fire-density.js"></script>
+</body>
+
+</html>

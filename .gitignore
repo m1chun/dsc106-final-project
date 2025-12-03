@@ -1,4 +1,4 @@
 .DS_Store
-docs/seed_zone_fire_veg.csv
-docs/seed_zone_fire_veg.geojson
-docs/fire-perimeters.geojson
+demo/seed_zone_fire_veg.csv
+demo/seed_zone_fire_veg.geojson
+demo/fire-perimeters.geojson

@@ -1,0 +1,312 @@
+/* =============================== */
+/* ✅ GLOBAL RESET */
+/* =============================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-family: system-ui, sans-serif;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+/* =============================== */
+/* ✅ BASE STORY STEPS */
+/* =============================== */
+
+.step {
+  min-height: 100vh;
+  padding: 5rem 6vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  border-bottom: 1px solid #e5e7eb;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+/* =============================== */
+/* ✅ HERO */
+/* =============================== */
+
+.hero {
+  background: linear-gradient(to bottom, #7f1d1d, #111827);
+  color: white;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 4rem;
+}
+
+.hero h2 {
+  font-size: 1.5rem;
+  opacity: 0.9;
+}
+
+.hero .hint {
+  margin-top: 3rem;
+  opacity: 0.7;
+}
+
+/* =============================== */
+/* ✅ TWO COLUMN STORY LAYOUT */
+/* =============================== */
+
+.two-column-step,
+.step.region-chooser {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* =============================== */
+/* ✅ LEFT MAP COLUMN */
+/* =============================== */
+
+.column-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;        /* ✅ prevents spill outside */
+}
+
+/* =============================== */
+/* ✅ RIGHT TEXT COLUMN */
+/* =============================== */
+
+.column-right {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #334155;
+}
+
+.column-right h3,
+.region-chooser h2 {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.column-right p,
+.region-chooser p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 440px;
+}
+
+/* =============================== */
+/* ✅ ALL SVG MAPS */
+/* =============================== */
+
+svg {
+  width: 100%;
+  display: block;
+}
+
+/* All maps obey same bounding box */
+#seed-zones-svg,
+#map-physio,
+#map-chooser {
+  width: 100%;
+  max-width: 760px;        /* ✅ SAME visual width */
+  height: 760px;          /* ✅ SAME height */
+  display: block;
+  margin: 0 auto;
+}
+
+/* Ensure SVG scales properly */
+#seed-zones-svg svg,
+#map-physio svg,
+#map-chooser svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* =============================== */
+/* ✅ TOOLTIP */
+/* =============================== */
+
+.tooltip {
+  position: fixed;
+  z-index: 999999;
+  pointer-events: none;
+
+  padding: 10px 14px;
+  background: linear-gradient(to bottom right, #0f172a, #1f2933);
+  color: #f9fafb;
+
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  opacity: 0;
+  display: block;
+
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+}
+
+/* ✅ Clicker mode */
+.tooltip.clicker {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  font-size: 0.95rem;
+  font-weight: 800;
+  padding: 12px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.tooltip.clicker::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  transform: translateX(-50%);
+
+  width: 14px;
+  height: 14px;
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+
+/* =============================== */
+/* ✅ MAP HOVER GLOW */
+/* =============================== */
+
+.map-glow {
+  stroke-width: 3 !important;
+  filter: drop-shadow(0 0 7px rgba(0,0,0,0.45));
+}
+
+/* =============================== */
+/* ✅ TOGGLE BUTTON */
+/* =============================== */
+
+.toggle-btn {
+  margin-top: 1.25rem;
+  padding: 0.6rem 1.1rem;
+
+  font-size: 0.95rem;
+  border-radius: 8px;
+  border: none;
+
+  background: #111827;
+  color: white;
+  cursor: pointer;
+}
+
+.toggle-btn:hover {
+  background: #2563eb;
+}
+
+/* =============================== */
+/* ✅ REGION PREVIEW LIST */
+/* =============================== */
+
+.region-preview-list {
+  margin-top: 1rem;
+  list-style: none;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.region-preview-list li {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #475569;
+
+  cursor: pointer !important;
+  user-select: none;
+
+  transition: color 0.15s ease, transform 0.15s ease, text-shadow 0.15s ease;
+}
+
+.region-preview-list li:hover {
+  color: #2563eb;
+  transform: translateX(8px);
+  text-shadow: 0 0 6px rgba(37,99,235,0.45);
+}
+
+.region-preview-list li:hover::after {
+  content: "→ Click to Explore";
+  margin-left: 12px;
+
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  background: #2563eb;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(37,99,235,0.35);
+}
+
+/* =============================== */
+/* ✅ ADVENTURE MODE */
+/* =============================== */
+
+.hidden {
+  display: none;
+}
+
+#region-adventure {
+  position: fixed;
+  inset: 0;
+  background: #f9fafb;
+  z-index: 9999;
+  overflow-y: scroll;
+  padding: 2rem;
+}
+
+.adventure-container {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.adventure-text .step {
+  min-height: 90vh;
+  padding: 2rem;
+  background: white;
+  border-radius: 16px;
+  margin-bottom: 4rem;
+}
+
+.adventure-graphic {
+  position: sticky;
+  top: 2rem;
+  height: calc(100vh - 4rem);
+  background: white;
+  border-radius: 16px;
+  padding: 1rem;
+}
+
+#adventure-map {
+  width: 100%;
+  height: 100%;
+}
+
+#exit-adventure {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 10000;
+
+  background: black;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
