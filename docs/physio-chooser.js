@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  
+
   const svg = d3.select("#map-chooser");
   const container = svg.node().parentElement;
 
@@ -77,9 +77,43 @@ document.addEventListener("DOMContentLoaded", () => {
       .attr("fill", "#e5e7eb")
       .attr("stroke", "#334155")
       .attr("stroke-width", 1)
-      .attr("opacity", 1);
+      .attr("opacity", 1)
+      .style("cursor", "pointer")
+      .style("pointer-events", "all")
+      .style("transition", "opacity 0.15s ease, fill 0.15s ease")
+
+      // ✅ HOVER ON MAP
+      .on("mouseenter", function (event, d) {
+        const regionName = getPhysioRegion(d.properties.SEED_ZONE);
+
+        const regionKey = Object.keys(displayMap).find(
+          key => displayMap[key] === regionName
+        );
+
+        highlightRegion(regionKey);
+
+        // ✅ SHOW TOOLTIP
+        d3.select(".tooltip")
+          .style("opacity", 1)
+          .html(regionName);
+      })
+
+      .on("mousemove", function (event) {
+        d3.select(".tooltip")
+          .style("left", event.clientX + 12 + "px")
+          .style("top", event.clientY + 12 + "px");
+      })
+
 
     setupChooserHover();
+
+    svg.on("mouseleave", () => {
+      clearHighlight();
+      d3.select(".tooltip").style("opacity", 0);
+    });
+
+
+
   });
 
   function setupChooserHover() {
@@ -106,23 +140,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function highlightRegion(regionKey) {
     const target = displayMap[regionKey];
-
     const paths = d3.select("#map-chooser").selectAll("path");
 
+    // Reset everything
     paths
+      .classed("map-glow", false)
       .style("opacity", 0.15)
-      .attr("fill", "#e5e7eb");
+      .attr("fill", "#e5e7eb")
+      .attr("stroke-width", 1);
 
+    // Highlight target region
     paths
       .filter(d => getPhysioRegion(d.properties.SEED_ZONE) === target)
+      .classed("map-glow", true)       // ✅ THIS ADDS THE GLOW
       .style("opacity", 1)
-      .attr("fill", regionColors[target]);
+      .attr("fill", regionColors[target])
+      .attr("stroke-width", 2.5);
   }
+
 
   function clearHighlight() {
     d3.select("#map-chooser")
       .selectAll("path")
+      .classed("map-glow", false)
       .style("opacity", 1)
-      .attr("fill", "#e5e7eb");
+      .attr("fill", "#e5e7eb")
+      .attr("stroke-width", 1);
   }
+
+
+
 });

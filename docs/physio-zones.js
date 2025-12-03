@@ -281,8 +281,7 @@ window.drawAdventurePhysioMap = function (selectedRegionName) {
     .attr("height", height)
     .style("display", "block");
 
-  const verticalOffset = (height - innerHeight) / 2 + 40; // ✅ pushes map down
-  // You can tweak the +40 later
+  const verticalOffset = (height - innerHeight) / 2 + 40;
 
   const g = svg.append("g")
     .attr("transform", `translate(${margin.left}, ${verticalOffset})`);
@@ -298,41 +297,28 @@ window.drawAdventurePhysioMap = function (selectedRegionName) {
 
   d3.json("ca-seed-zones.geojson").then(data => {
 
-    g.selectAll("path")
+    const paths = g.selectAll("path")
       .data(data.features)
       .join("path")
       .attr("d", path)
       .attr("stroke", "#334155")
       .attr("stroke-width", 1)
-
-      // ✅ CRITICAL: strip any leftover glow class
       .classed("map-glow", false)
+      .style("transition", "opacity 0.2s ease, fill 0.2s ease, filter 0.2s ease");
 
-    // ✅ FORCE correct physio color + normalize dash characters
-    g.selectAll("path")
-      .data(data.features)
-      .join("path")
-      .attr("d", path)
-      .attr("stroke", "#334155")
-      .attr("stroke-width", 1)
-
-      // ✅ HARD-REMOVE GLOW CLASS
-      .classed("map-glow", false)
-
-      // ✅ FORCE COLOR WITH !IMPORTANT + DASH FIX
+    paths
       .style("fill", d => {
         const seed = Number(d.properties.SEED_ZONE);
-
         const regionRaw = getPhysioRegion(seed);
+
         const regionSafe = regionRaw?.replace(/–/g, "-");
         const selectedSafe = selectedRegionName?.replace(/–/g, "-");
 
         return regionSafe === selectedSafe
           ? window.regionColors[regionRaw] || "#000000"
           : "#e5e7eb";
-      }, "important")
+      })
 
-      // ✅ OPACITY SAFETY
       .style("opacity", d => {
         const seed = Number(d.properties.SEED_ZONE);
 
@@ -341,9 +327,21 @@ window.drawAdventurePhysioMap = function (selectedRegionName) {
         const selectedSafe = selectedRegionName?.replace(/–/g, "-");
 
         return regionSafe === selectedSafe ? 1 : 0.2;
-      }, "important");
+      })
+
+      // ✅ ADD GLOW TO SELECTED REGION ONLY
+      .classed("map-glow", d => {
+        const seed = Number(d.properties.SEED_ZONE);
+
+        const regionRaw = getPhysioRegion(seed);
+        const regionSafe = regionRaw?.replace(/–/g, "-");
+        const selectedSafe = selectedRegionName?.replace(/–/g, "-");
+
+        return regionSafe === selectedSafe;
+      });
 
   });
+
 };
 
 

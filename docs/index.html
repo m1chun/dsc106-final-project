@@ -63,7 +63,7 @@
   <!-- ✅ SEED ZONES -->
   <section class="step two-column-step">
     <div class="column-left">
-      <svg id="seed-zones-svg"></svg>
+      <svg id="fire-map"></svg>
     </div>
 
     <div class="column-right">
@@ -184,29 +184,22 @@
           <svg id="adventure-map"></svg>
         </div>
 
-        <!-- ✅ STEP 2: FIRE VIZ (EMPTY FOR NOW) -->
+        <!-- ✅ STEP 2: FIRE VIZ -->
         <div class="adventure-view hidden" id="adventure-view-fire">
           <div id="adventure-fire-wrapper">
+
+            <!-- ✅ Region-only fire density MAP -->
+            <svg id="adventure-fire-map"></svg>
+
+            <!-- ✅ Bars -->
             <div id="adventure-fire-chart"></div>
+
+
           </div>
-
-          <div class="fire-simulator">
-            <label for="fireMultiplier">
-              Fire Intensity Multiplier:
-              <span id="fireMultiplierValue">1.00x</span>
-            </label>
-
-            <input type="range" id="fireMultiplier" min="0.5" max="2" step="0.01" value="1">
-          </div>
-
-
         </div>
 
-        <!-- ✅ STEP 3: VEG VIZ (EMPTY FOR NOW) -->
+        <!-- ✅ STEP 3: VEG VIZ -->
         <div class="adventure-view hidden" id="adventure-view-veg">
-          <div id="adventure-veg-wrapper">
-            <div id="adventure-veg-chart"></div>
-          </div>
         </div>
 
       </div>
@@ -219,7 +212,7 @@
   <div class="tooltip"></div>
 
   <!-- ✅ SCRIPTS -->
-  <script src="seed-zones.js"></script>
+  <script src="fire-density.js"></script>
   <script src="physio-zones.js"></script>
   <script src="physio-chooser.js"></script>
   <script src="region-data.js"></script>

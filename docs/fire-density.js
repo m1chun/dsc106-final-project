@@ -71,18 +71,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 .attr("class", "fire-legend")
                 .attr("transform", `translate(${width - 315}, 40)`);
 
-            // ✅ BACKGROUND
-            legend.append("rect")
-                .attr("width", 300)
-                .attr("height", 175)
-                .attr("rx", 16)
-                .attr("fill", "rgba(255,255,255,0.96)")
-                .attr("stroke", "#e5e7eb")
-                .attr("stroke-width", 2);
-
             // ✅ TITLE
             legend.append("text")
-                .attr("x", 150)
+                .attr("x", 95)
                 .attr("y", 28)
                 .attr("text-anchor", "middle")
                 .attr("font-weight", "800")
@@ -172,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 .attr("y", d => path.centroid(d)[1])
                 .attr("text-anchor", "middle")
                 .attr("dy", "0.35em")
-                .style("font-size", "13px")
+                .style("font-size", "10px")
                 .style("font-weight", "900")
                 .style("fill", "#111")
                 .style("stroke", "white")
