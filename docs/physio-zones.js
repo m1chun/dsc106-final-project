@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==============================
     // ✅ GLOBAL REGION CLASSIFIER
     // ==============================
-    window.getPhysioRegion = function(seedZone) {
+    window.getPhysioRegion = function (seedZone) {
       const z = Number(seedZone);
 
       if (z >= 90 && z < 100) return "North Coast Redwood";
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ================================
     // ✅ COLOR PALETTE
     // ================================
-    const regionColors = {
+    window.regionColors = {
       "North Coast Redwood": "#1b9e77",
       "Central Coast": "#66a61e",
       "North Coast Interior": "#7570b3",
@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // ==============================
 // ✅ HIGHLIGHT A PHYSIO REGION (SAFE)
 // ==============================
-window.highlightPhysioRegionOnMap = function(regionKey) {
+window.highlightPhysioRegionOnMap = function (regionKey) {
 
   const displayMap = {
     "north-coast-redwood": "North Coast Redwood",
@@ -243,7 +243,7 @@ window.highlightPhysioRegionOnMap = function(regionKey) {
 // ==============================
 // ✅ CLEAR HIGHLIGHT (SAFE)
 // ==============================
-window.clearPhysioRegionHighlight = function() {
+window.clearPhysioRegionHighlight = function () {
 
   const paths = d3.select("#map-chooser").selectAll("path");
 
@@ -254,5 +254,97 @@ window.clearPhysioRegionHighlight = function() {
     .style("opacity", 1)
     .attr("fill", "#e5e7eb");
 };
+
+// =======================================
+// ✅ ADVENTURE MODE PHYSIO MAP (RIGHT SIDE)
+// =======================================
+window.drawAdventurePhysioMap = function (selectedRegionName) {
+  console.log("✅ NEW ADVENTURE MAP FUNCTION RUNNING");
+
+  const svg = d3.select("#adventure-map");
+  if (svg.empty()) return;
+
+  const container = svg.node().parentElement;
+
+  const width = container.clientWidth;
+  const height = 600;
+
+  const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+  const innerWidth = width - margin.left - margin.right;
+  const innerHeight = height - margin.top - margin.bottom;
+
+  // ✅ Clear previous adventure visualization
+  svg.selectAll("*").remove();
+
+  svg
+    .attr("width", width)
+    .attr("height", height)
+    .style("display", "block");
+
+  const verticalOffset = (height - innerHeight) / 2 + 40; // ✅ pushes map down
+  // You can tweak the +40 later
+
+  const g = svg.append("g")
+    .attr("transform", `translate(${margin.left}, ${verticalOffset})`);
+
+  const projection = d3.geoAlbers()
+    .center([0, 37])
+    .rotate([120, 0])
+    .parallels([34, 40.5])
+    .scale(innerWidth * 5)
+    .translate([innerWidth / 2, innerHeight / 2]);
+
+  const path = d3.geoPath().projection(projection);
+
+  d3.json("ca-seed-zones.geojson").then(data => {
+
+    g.selectAll("path")
+      .data(data.features)
+      .join("path")
+      .attr("d", path)
+      .attr("stroke", "#334155")
+      .attr("stroke-width", 1)
+
+      // ✅ CRITICAL: strip any leftover glow class
+      .classed("map-glow", false)
+
+    // ✅ FORCE correct physio color + normalize dash characters
+    g.selectAll("path")
+      .data(data.features)
+      .join("path")
+      .attr("d", path)
+      .attr("stroke", "#334155")
+      .attr("stroke-width", 1)
+
+      // ✅ HARD-REMOVE GLOW CLASS
+      .classed("map-glow", false)
+
+      // ✅ FORCE COLOR WITH !IMPORTANT + DASH FIX
+      .style("fill", d => {
+        const seed = Number(d.properties.SEED_ZONE);
+
+        const regionRaw = getPhysioRegion(seed);
+        const regionSafe = regionRaw?.replace(/–/g, "-");
+        const selectedSafe = selectedRegionName?.replace(/–/g, "-");
+
+        return regionSafe === selectedSafe
+          ? window.regionColors[regionRaw] || "#000000"
+          : "#e5e7eb";
+      }, "important")
+
+      // ✅ OPACITY SAFETY
+      .style("opacity", d => {
+        const seed = Number(d.properties.SEED_ZONE);
+
+        const regionRaw = getPhysioRegion(seed);
+        const regionSafe = regionRaw?.replace(/–/g, "-");
+        const selectedSafe = selectedRegionName?.replace(/–/g, "-");
+
+        return regionSafe === selectedSafe ? 1 : 0.2;
+      }, "important");
+
+  });
+};
+
 
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Where California Burns</title>
@@ -20,11 +21,11 @@
 
   <!-- ✅ FIRE IMAGES - HOOK -->
   <section class="step">
-    <h2>Maybe we put a little animation here with fire images</h2>
+    <h2>Placeholder</h2>
     <img src="fire-image.jpg">
   </section>
 
-    <!-- ✅ FIRE GROWTH - INCIDENTS -->
+  <!-- ✅ FIRE GROWTH - INCIDENTS -->
   <section class="step">
     <h2>Modeling Fire Incidents Growth Over Time</h2>
     <p>CalFire annually updates wildfire records across California.</p>
@@ -73,8 +74,9 @@
     <div class="column-right">
       <h3>California’s Major Physiographic & Climatic Regions</h3>
       <p>
-      To better understand wildfire behavior, California can be divided into six broad physiographic and climatic regions. 
-      Each region has distinct vegetation, moisture, temperature, and wind patterns that strongly shape fire risk.
+        To better understand wildfire behavior, California can be divided into six broad physiographic and climatic
+        regions.
+        Each region has distinct vegetation, moisture, temperature, and wind patterns that strongly shape fire risk.
       </p>
 
       <p>
@@ -82,82 +84,99 @@
       </p>
       <button id="toggle-physio-labels-btn" class="toggle-btn">
         Show Seed Zone Numbers
-    </button>
+      </button>
     </div>
   </section>
 
-<!-- ✅ PHYSIO CHOICE STEP -->
-<section class="step region-chooser">
+  <!-- ✅ PHYSIO CHOICE STEP -->
+  <section class="step region-chooser">
 
-  <div class="column-left">
-    <svg id="map-chooser"></svg>
-  </div>
+    <div class="column-left">
+      <svg id="map-chooser"></svg>
+    </div>
 
-  <div class="column-right">
-    <h2>Choose a Physiographic Region</h2>
+    <div class="column-right">
+      <h2>Choose a Physiographic Region</h2>
 
-    <p>
-      Hover a region name to preview it on the map, click to enter the adventure.
-    </p>
+      <p>
+        Hover a region name to preview it on the map, click to enter the adventure.
+      </p>
 
-    <!-- ✅ THIS CLASS WAS MISSING -->
-    <ul class="region-preview-list">
+      <!-- ✅ THIS CLASS WAS MISSING -->
+      <ul class="region-preview-list">
 
-      <li data-region="north-coast-redwood">North Coast Redwood</li>
-      <li data-region="central-coast">Central Coast</li>
-      <li data-region="north-coast-interior">North Coast Interior</li>
-      <li data-region="west-slope-sierra">West Slope Cascades-Sierra</li>
-      <li data-region="east-slope-sierra">East Slope Cascades-Sierra</li>
-      <li data-region="great-basin">Great Basin</li>
-      <li data-region="central-valley">Central Valley</li>
-      <li data-region="socal-desert">SoCal Desert</li>
-      <li data-region="socal-mountains">SoCal Mountains</li>
+        <li data-region="north-coast-redwood">North Coast Redwood</li>
+        <li data-region="central-coast">Central Coast</li>
+        <li data-region="north-coast-interior">North Coast Interior</li>
+        <li data-region="west-slope-sierra">West Slope Cascades-Sierra</li>
+        <li data-region="east-slope-sierra">East Slope Cascades-Sierra</li>
+        <li data-region="great-basin">Great Basin</li>
+        <li data-region="central-valley">Central Valley</li>
+        <li data-region="socal-desert">SoCal Desert</li>
+        <li data-region="socal-mountains">SoCal Mountains</li>
 
-    </ul>
-  </div>
+      </ul>
+    </div>
 
-</section>
+  </section>
 
 
-<!-- =============================== -->
-<!-- ✅ REGION ADVENTURE MODE -->
-<!-- =============================== -->
-<section id="region-adventure" class="hidden">
+  <!-- =============================== -->
+  <!-- ✅ REGION ADVENTURE MODE -->
+  <!-- =============================== -->
+  <section id="region-adventure" class="hidden">
 
-  <!-- ✅ BACK BUTTON -->
-  <button id="exit-adventure" class="back-btn">
-    ← Back to Main Story
-  </button>
+    <!-- ✅ BACK BUTTON -->
+    <button id="exit-adventure" class="back-btn">
+      ← Back to Main Story
+    </button>
 
-  <div class="adventure-container">
+    <div class="adventure-container">
 
-    <!-- ✅ LEFT: TEXT SCROLL -->
-    <div class="adventure-text">
-      
-      <div class="step" data-adventure-step="overview">
-        <h2 id="adventure-title">Region Overview</h2>
-        <p id="adventure-description"></p>
+      <!-- ✅ LEFT: TEXT SCROLL -->
+      <div class="adventure-text">
+
+        <div class="step" data-adventure-step="overview">
+          <h2 id="adventure-title">Region Overview</h2>
+          <p id="adventure-description"></p>
+          <!-- ✅ NEW: OVERVIEW IMAGE -->
+          <img id="adventure-overview-image" class="adventure-image" src="" alt="Region landscape">
+        </div>
+
+        <div class="step" data-adventure-step="fire">
+          <h2>Fire Behavior</h2>
+          <p id="adventure-fire"></p>
+        </div>
+
+        <div class="step" data-adventure-step="veg">
+          <h2>Vegetation & Fuel</h2>
+          <p id="adventure-veg"></p>
+        </div>
+
       </div>
 
-      <div class="step" data-adventure-step="fire">
-        <h2>Fire Behavior</h2>
-        <p id="adventure-fire"></p>
-      </div>
+      <!-- ✅ RIGHT: ADVENTURE MAP -->
+      <div class="adventure-graphic">
 
-      <div class="step" data-adventure-step="veg">
-        <h2>Vegetation & Fuel</h2>
-        <p id="adventure-veg"></p>
+        <!-- ✅ STEP 1: PHYSIO MAP -->
+        <div class="adventure-view" id="adventure-view-map">
+          <svg id="adventure-map"></svg>
+        </div>
+
+        <!-- ✅ STEP 2: FIRE VIZ (EMPTY FOR NOW) -->
+        <div class="adventure-view hidden" id="adventure-view-fire">
+          <div id="adventure-fire-chart"></div>
+        </div>
+
+        <!-- ✅ STEP 3: VEG VIZ (EMPTY FOR NOW) -->
+        <div class="adventure-view hidden" id="adventure-view-veg">
+          <div id="adventure-veg-chart"></div>
+        </div>
+
       </div>
 
     </div>
-
-    <!-- ✅ RIGHT: ADVENTURE MAP -->
-    <div class="adventure-graphic">
-      <svg id="adventure-map"></svg>
-    </div>
-
-  </div>
-</section>
+  </section>
 
 
   <!-- ✅ TOOLTIP (REQUIRED FOR HOVER TO WORK) -->
@@ -168,7 +187,9 @@
   <script src="physio-zones.js"></script>
   <script src="physio-chooser.js"></script>
   <script src="region-data.js"></script>
+  <script src="https://unpkg.com/scrollama"></script>
   <script src="app.js"></script>
 
 </body>
+
 </html>
