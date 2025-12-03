@@ -76,7 +76,7 @@
 
       <p>
         Seed zones are critical for wildfire recovery because local vegetation has adapted to be
-         more fire-resistant and regenerates more successfully.
+        more fire-resistant and regenerates more successfully.
         after burns.
       </p>
 
@@ -96,7 +96,8 @@
       <h3>California's Major Physiographic & Climatic Regions</h3>
       <p>
         To better understand wildfire behavior, California can be divided into nine broad physiographic and climatic
-        regions. Each region has distinct vegetation, moisture, temperature, and wind patterns that strongly shapes fire risk.
+        regions. Each region has distinct vegetation, moisture, temperature, and wind patterns that strongly shapes fire
+        risk.
       </p>
 
       <p>
@@ -185,12 +186,27 @@
 
         <!-- ✅ STEP 2: FIRE VIZ (EMPTY FOR NOW) -->
         <div class="adventure-view hidden" id="adventure-view-fire">
-          <div id="adventure-fire-chart"></div>
+          <div id="adventure-fire-wrapper">
+            <div id="adventure-fire-chart"></div>
+          </div>
+
+          <div class="fire-simulator">
+            <label for="fireMultiplier">
+              Fire Intensity Multiplier:
+              <span id="fireMultiplierValue">1.00x</span>
+            </label>
+
+            <input type="range" id="fireMultiplier" min="0.5" max="2" step="0.01" value="1">
+          </div>
+
+
         </div>
 
         <!-- ✅ STEP 3: VEG VIZ (EMPTY FOR NOW) -->
         <div class="adventure-view hidden" id="adventure-view-veg">
-          <div id="adventure-veg-chart"></div>
+          <div id="adventure-veg-wrapper">
+            <div id="adventure-veg-chart"></div>
+          </div>
         </div>
 
       </div>
@@ -208,7 +224,7 @@
   <script src="physio-chooser.js"></script>
   <script src="region-data.js"></script>
 
-  <script src="adventure-charts.js"></script> 
+  <script src="adventure-charts.js"></script>
 
   <script src="https://unpkg.com/scrollama"></script>
   <script src="app.js"></script>
