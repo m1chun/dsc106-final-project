@@ -374,6 +374,37 @@ svg {
   pointer-events: none;
 }
 
+#adventure-fire-wrapper {
+  position: relative;
+  overflow-y: auto;
+  max-height: 80vh;
+  padding-top: 3rem;
+}
+
+#adventure-fire-chart h3 {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: white;
+  padding: 0.5rem 0;
+  margin: 0 0 1rem 0;
+}
+#adventure-veg-wrapper {
+  position: relative;
+  overflow-y: auto;
+  max-height: 80vh;
+  padding-top: 3rem;
+}
+
+#adventure-veg-chart h3 {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: white;
+  padding: 0.5rem 0;
+  margin: 0 0 1rem 0;
+}
+
 /* =============================== */
 /* ✅ FIRE SIMULATOR */
 /* =============================== */
@@ -383,8 +414,8 @@ svg {
   background: #f1f5f9;
   border-radius: 12px;
   font-size: 0.9rem;
-  margin-left: 3rem;
-  margin-right: 3rem;
+  margin-left: 8rem;
+  margin-right: 8em;
 }
 
 .fire-simulator label {
@@ -429,33 +460,4 @@ svg {
   transform: scale(1.2);
 }
 
-#adventure-fire-wrapper {
-  position: relative;
-  overflow-y: auto;
-  max-height: 80vh;
-  padding-top: 3rem;
-}
 
-#adventure-fire-chart h3 {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: white;
-  padding: 0.5rem 0;
-  margin: 0 0 1rem 0;
-}
-#adventure-veg-wrapper {
-  position: relative;
-  overflow-y: auto;
-  max-height: 80vh;
-  padding-top: 3rem;
-}
-
-#adventure-veg-chart h3 {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: white;
-  padding: 0.5rem 0;
-  margin: 0 0 1rem 0;
-}
