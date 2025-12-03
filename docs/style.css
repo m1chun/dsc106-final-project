@@ -30,6 +30,10 @@ html, body {
   background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
 }
 
+.step:not(#region-adventure) p {
+  margin-bottom: 1rem;
+}
+
 /* =============================== */
 /* ✅ HERO */
 /* =============================== */
@@ -369,3 +373,4 @@ svg {
   transform: translateY(20px);   /* subtle downward slide */
   pointer-events: none;
 }
+

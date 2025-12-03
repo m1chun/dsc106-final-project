@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  
   const svg = d3.select("#map-chooser");
   const container = svg.node().parentElement;
 
