@@ -204,6 +204,12 @@
           <p id="adventure-fire"></p>
         </div>
 
+        <div class="step" data-adventure-step="precip">
+          <h2>Precipitation</h2>
+          <p id="adventure-precip"></p>
+        </div>
+
+
         <div class="step" data-adventure-step="veg">
           <h2>Vegetation & Fuel</h2>
           <p id="adventure-veg"></p>
@@ -223,33 +229,32 @@
         <!-- ✅ STEP 2: FIRE VIZ -->
         <div class="adventure-view hidden" id="adventure-view-fire">
           <div id="adventure-fire-wrapper">
-
-            <!-- ✅ Region-only fire density MAP -->
             <svg id="adventure-fire-map"></svg>
-
-            <!-- ✅ Bars -->
             <div id="adventure-fire-chart"></div>
-
-
           </div>
         </div>
 
-        <!-- ✅ STEP 3: VEG VIZ -->
+        <!-- ✅ STEP 3: PRECIP VIZ (✅ FIXED) -->
+        <div class="adventure-view hidden" id="adventure-view-precip">
+          <svg id="precip-map"></svg>
+        </div>
+
+        <!-- ✅ STEP 4: VEG VIZ (✅ FIXED) -->
         <div class="adventure-view hidden" id="adventure-view-veg">
-
-          <!-- LEFT: IMAGES -->
           <div id="adventure-veg-images" class="veg-image-grid"></div>
-
-          <!-- RIGHT: TEXT -->
           <div id="adventure-veg-chart"></div>
-
         </div>
 
       </div>
 
     </div>
+
+    </div>
   </section>
 
+  <footer>
+    <p>Created by Dynamic Super Chickens 106</p>
+  </footer>
 
   <!-- ✅ TOOLTIP (REQUIRED FOR HOVER TO WORK) -->
   <div class="tooltip"></div>
@@ -259,6 +264,7 @@
   <script src="physio-zones.js"></script>
   <script src="physio-chooser.js"></script>
   <script src="region-data.js"></script>
+  <script src="precipitation-map.js"></script>
 
   <script src="adventure-charts.js"></script>
 
