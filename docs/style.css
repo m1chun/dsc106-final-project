@@ -521,15 +521,4 @@ svg {
   color: #374151;
 }
 
-/* ============================= */
-/* 🧾 FOOTER */
-/* ============================= */
-footer {
-  text-align: center;
-  padding: 2.5rem;
-  background: linear-gradient(135deg, #1f2933, #111827);
-  color: #e5e7eb;
-  font-size: 0.85rem;
-  letter-spacing: 0.04em;
-}
 

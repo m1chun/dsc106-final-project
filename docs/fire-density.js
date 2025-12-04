@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const legend = svg.append("g")
                 .attr("class", "fire-legend")
-                .attr("transform", `translate(${width - 360}, 40)`);
+                .attr("transform", `translate(${width - 315}, 40)`);
 
             // ✅ TITLE
             legend.append("text")
