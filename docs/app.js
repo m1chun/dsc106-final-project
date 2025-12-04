@@ -145,6 +145,13 @@ document.addEventListener("DOMContentLoaded", () => {
           drawAdventureFireView?.(regionKey); // you can implement this later
         }
 
+        if (stepType === "precip") {
+          document.getElementById("adventure-view-precip")
+            .classList.remove("hidden");
+
+          drawAdventurePrecipView?.(regionKey);
+        }
+
         if (stepType === "veg") {
           document.getElementById("adventure-view-veg")
             .classList.remove("hidden");
