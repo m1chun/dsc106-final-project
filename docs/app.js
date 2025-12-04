@@ -54,52 +54,52 @@ document.addEventListener("DOMContentLoaded", () => {
     // ============================
     // ✅ CLICK → ENTER ADVENTURE
     // ============================
-item.addEventListener("click", () => {
-  const data = window.regionData?.[region];
+    item.addEventListener("click", () => {
+      const data = window.regionData?.[region];
 
-  if (!data) {
-    console.error("❌ Missing region data for:", region);
-    return;
-  }
+      if (!data) {
+        console.error("❌ Missing region data for:", region);
+        return;
+      }
 
-  // ✅✅✅ FULL HARD RESET FIRST (THIS WAS MISSING)
-  window.hardResetAdventureState();
+      // ✅✅✅ FULL HARD RESET FIRST (THIS WAS MISSING)
+      window.hardResetAdventureState();
 
-  document.body.style.overflow = "hidden";
-  document.querySelectorAll("section.step")
-    .forEach(s => s.classList.add("hidden"));
+      document.body.style.overflow = "hidden";
+      document.querySelectorAll("section.step")
+        .forEach(s => s.classList.add("hidden"));
 
-  adventure.classList.remove("hidden");
+      adventure.classList.remove("hidden");
 
-  const displayMap = {
-    "north-coast-redwood": "North Coast Redwood",
-    "central-coast": "Central Coast",
-    "north-coast-interior": "North Coast Interior",
-    "west-slope-sierra": "West Slope Cascades–Sierra",
-    "east-slope-sierra": "East Slope Cascades–Sierra",
-    "great-basin": "Great Basin",
-    "central-valley": "Central Valley",
-    "socal-desert": "SoCal Desert",
-    "socal-mountains": "SoCal Mountains"
-  };
+      const displayMap = {
+        "north-coast-redwood": "North Coast Redwood",
+        "central-coast": "Central Coast",
+        "north-coast-interior": "North Coast Interior",
+        "west-slope-sierra": "West Slope Cascades–Sierra",
+        "east-slope-sierra": "East Slope Cascades–Sierra",
+        "great-basin": "Great Basin",
+        "central-valley": "Central Valley",
+        "socal-desert": "SoCal Desert",
+        "socal-mountains": "SoCal Mountains"
+      };
 
-  const displayName = displayMap[region];
-  window.currentRegionDisplayName = displayName;
+      const displayName = displayMap[region];
+      window.currentRegionDisplayName = displayName;
 
-  // ✅ Draw fresh map
-  drawAdventurePhysioMap(displayName);
+      // ✅ Draw fresh map
+      drawAdventurePhysioMap(displayName);
 
-  // ✅ Start fresh scroll
-  initAdventureScroll(region);
+      // ✅ Start fresh scroll
+      initAdventureScroll(region);
 
-  // ✅ Set new text content
-  document.getElementById("adventure-title").textContent = data.title;
-  document.getElementById("adventure-description").textContent = data.description;
-  document.getElementById("adventure-fire").textContent = data.fire;
-  document.getElementById("adventure-veg").textContent = data.veg;
-  document.getElementById("adventure-overview-image").src = data.image;
-  renderRegionVegetationInfo(region);
-});
+      // ✅ Set new text content
+      document.getElementById("adventure-title").textContent = data.title;
+      document.getElementById("adventure-description").textContent = data.description;
+      document.getElementById("adventure-fire").textContent = data.fire;
+      document.getElementById("adventure-veg").textContent = data.veg;
+      document.getElementById("adventure-overview-image").src = data.image;
+      renderRegionVegetationInfo(region);
+    });
   });
 
   // ============================
@@ -149,7 +149,7 @@ item.addEventListener("click", () => {
           document.getElementById("adventure-view-veg")
             .classList.remove("hidden");
 
-          drawAdventureVegView?.(regionKey); // you can implement this later
+          drawAdventureVegView(regionKey); // you can implement this later
           renderRegionVegetationInfo(regionKey); // ✅ ADD THIS
 
         }
@@ -187,3 +187,95 @@ function renderRegionVegetationInfo(regionKey) {
     box.appendChild(ul);
   });
 }
+
+window.drawAdventureVegView = function (regionKey) {
+
+  const view = document.getElementById("adventure-view-veg");
+  if (!view) return;
+
+  const imageBox = document.getElementById("adventure-veg-images");
+  const textBox = document.getElementById("adventure-veg-chart");
+
+  if (!imageBox || !textBox) {
+    console.warn("⚠️ Veg view containers missing in HTML");
+    return;
+  }
+
+  // ✅ Clear previous content
+  imageBox.innerHTML = "";
+  textBox.innerHTML = "";
+
+  const data = window.regionData?.[regionKey];
+  if (!data) {
+    console.warn("⚠️ No region veg data found for:", regionKey);
+    return;
+  }
+
+  // ================================
+  // ✅ LEFT COLUMN — IMAGES
+  // ================================
+  // ================================
+  // ✅ LEFT COLUMN — IMAGES + CAPTIONS
+  // ================================
+  const vegImages = data.vegImages || [];
+
+  vegImages.forEach(obj => {
+    const figure = document.createElement("figure");
+    figure.className = "veg-figure";
+
+    const img = document.createElement("img");
+    img.src = obj.src;
+    img.alt = obj.caption || "Vegetation image";
+
+    const caption = document.createElement("figcaption");
+    caption.textContent = obj.caption || "";
+
+    figure.appendChild(img);
+    if (obj.caption) figure.appendChild(caption);
+
+    imageBox.appendChild(figure);
+  });
+
+
+  // ================================
+  // ✅ RIGHT COLUMN — TEXT
+  // ================================
+  if (data.vegDetails) {
+    const { resistantTitle, resistant, flammableTitle, flammable } = data.vegDetails;
+
+    // ✅ Resistant Section
+    if (resistantTitle) {
+      const h3 = document.createElement("h3");
+      h3.textContent = resistantTitle;
+      textBox.appendChild(h3);
+    }
+
+    if (Array.isArray(resistant)) {
+      const ul = document.createElement("ul");
+      resistant.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        ul.appendChild(li);
+      });
+      textBox.appendChild(ul);
+    }
+
+    // ✅ Flammable Section
+    if (flammableTitle) {
+      const h3 = document.createElement("h3");
+      h3.style.marginTop = "14px";
+      h3.textContent = flammableTitle;
+      textBox.appendChild(h3);
+    }
+
+    if (Array.isArray(flammable)) {
+      const ul = document.createElement("ul");
+      flammable.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        ul.appendChild(li);
+      });
+      textBox.appendChild(ul);
+    }
+  }
+};

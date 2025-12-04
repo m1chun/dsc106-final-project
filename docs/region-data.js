@@ -100,6 +100,16 @@ window.regionData = {
           "Contains oils and resins that often contain dead branches which can spread the fire faster"
         ]
       }
+    ],
+    vegImages: [
+      {
+        src: "veg-images/oak.png",
+        caption: "Oak Tree"
+      },
+      {
+        src: "veg-images/conifer-pine.png",
+        caption: "Coniferous Pine"
+      }
     ]
   },
 
@@ -225,6 +235,16 @@ window.regionData = {
         bullets: [
           "Limited vegetation makes it hard to fuel large fires"
         ]
+      }
+    ],
+    vegImages: [
+      {
+        src: "veg-images/joshua-tree.png",
+        caption: "Joshua Tree"
+      },
+      {
+        src: "veg-images/ca-fan-palm.png",
+        caption: "California Fan Palm"
       }
     ]
   },
