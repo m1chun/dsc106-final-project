@@ -478,3 +478,5 @@ function drawAdventureFireLegend(svg, width) {
         .attr("fill", "#111")
         .text(d => `${d.label}`);
 }
+
+

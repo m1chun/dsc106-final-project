@@ -98,6 +98,7 @@ item.addEventListener("click", () => {
   document.getElementById("adventure-fire").textContent = data.fire;
   document.getElementById("adventure-veg").textContent = data.veg;
   document.getElementById("adventure-overview-image").src = data.image;
+  renderRegionVegetationInfo(region);
 });
   });
 
@@ -149,6 +150,8 @@ item.addEventListener("click", () => {
             .classList.remove("hidden");
 
           drawAdventureVegView?.(regionKey); // you can implement this later
+          renderRegionVegetationInfo(regionKey); // ✅ ADD THIS
+
         }
 
       });
@@ -156,3 +159,31 @@ item.addEventListener("click", () => {
     window.addEventListener("resize", scroller.resize);
   }
 });
+
+function renderRegionVegetationInfo(regionKey) {
+  const box = document.getElementById("adventure-veg-info");
+  if (!box) return;
+
+  box.innerHTML = "";
+
+  const data = window.regionData?.[regionKey];
+  if (!data || !data.vegDetails) return;
+
+  data.vegDetails.forEach(item => {
+    // ✅ Title Line (e.g. "Oaks: Fire-Resistant")
+    const title = document.createElement("h4");
+    title.textContent = `${item.name}: ${item.label}`;
+    box.appendChild(title);
+
+    // ✅ Bullet List (ANY number of bullets works)
+    const ul = document.createElement("ul");
+
+    item.bullets.forEach(text => {
+      const li = document.createElement("li");
+      li.textContent = text;
+      ul.appendChild(li);
+    });
+
+    box.appendChild(ul);
+  });
+}

@@ -349,6 +349,15 @@ svg {
   }
 }
 
+/* =============================== */
+/* ✅ ADVENTURE RIGHT PANEL OVERVIEW */
+/* =============================== */
+#adventure-description {
+  margin-top: 1.25rem;     /* adds space BELOW the title */
+  line-height: 1.6;       /* makes the description breathe */
+  max-width: 55ch;        /* prevents ultra-wide text */
+  font-size: 1.05rem;    /* slight readability boost */
+}
 
 /* =============================== */
 /* ✅ ADVENTURE RIGHT PANEL TRANSITIONS */
@@ -459,5 +468,19 @@ svg {
 #fireMultiplier::-webkit-slider-thumb:hover {
   transform: scale(1.2);
 }
+
+/* =============================== */
+/* VEGETATION LEFT PANEL INFO */
+/* =============================== */
+#adventure-veg-info ul {
+  margin-top: 6px;
+  margin-bottom: 12px;
+  padding-left: 18px;
+}
+
+#adventure-veg-info li {
+  margin-bottom: 4px;
+}
+
 
 
