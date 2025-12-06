@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //  LOAD + DRAW MAP
   // =====================================
   d3.json("ca-seed-zones.geojson").then(data => {
-    
+
     g.selectAll("path")
       .data(data.features)
       .join("path")
@@ -89,35 +89,45 @@ document.addEventListener("DOMContentLoaded", () => {
       // =============================
       //  ⭐ FIXED TOOLTIP HANDLERS
       // =============================
+      // =============================
+      //  ⭐ FIXED TOOLTIP HANDLERS
+      // =============================
       .on("mouseenter", function (event, d) {
 
-        const regionName = getPhysioRegion(d.properties.SEED_ZONE);
+        const seed = Number(d.properties.SEED_ZONE);
+        const regionName = getPhysioRegion(seed);
 
-        // highlight selection
         const regionKey = Object.keys(displayMap)
           .find(k => displayMap[k] === regionName);
 
+        // highlight the region polygons
         highlightRegion(regionKey);
 
-        // show tooltip
-        d3.select(".tooltip")
+        // ⭐ Always show tooltip using reliable pattern
+        const tooltip = d3.select(".tooltip");
+        tooltip
+          .style("display", "block")
           .style("opacity", 1)
           .html(`
-            <strong>Region:</strong> ${regionName}
-          `);
+        <strong>Region:</strong> ${regionName}<br/>
+      `);
       })
 
       .on("mousemove", function (event) {
         d3.select(".tooltip")
-          .style("left", event.clientX + 12 + "px")
-          .style("top", event.clientY + 12 + "px");
+          .style("left", (event.clientX + 12) + "px")
+          .style("top", (event.clientY + 12) + "px");
       })
 
       .on("mouseleave", function () {
-        // only hide when leaving a PATH, not the SVG
-        d3.select(".tooltip").style("opacity", 0);
-        clearHighlight();
+        // ⭐ Hide tooltip cleanly
+        d3.select(".tooltip")
+          .style("opacity", 0)
+          .style("display", "none");
+
+        clearHighlight();  // Un-highlight map
       });
+
 
     setupChooserHover();
   });

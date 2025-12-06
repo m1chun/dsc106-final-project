@@ -45,20 +45,41 @@ function drawFireMap(svgId) {
         .attr("stroke", "#334155")
         .attr("stroke-width", 1.4)
         .on("mouseenter", (event, d) => {
-          const regionName = getPhysioRegion(d.properties.SEED_ZONE);
+          const density = d.properties.fire_density ?? 0;
 
-          tooltip.style("opacity", 1).html(`
-    <strong>Region:</strong> ${regionName}<br/>
-    <strong>Seed Zone:</strong> ${d.properties.SEED_ZONE}<br/>
-    <strong>Density:</strong> ${d3.format(".6f")(d.properties.fire_density ?? 0)}
-  `);
+          // Determine color + category
+          const densityColor = colorScale(density);
+          const colorIndex = colors.indexOf(densityColor);
+          const densityCategory = labels[colorIndex] ?? "Unknown";
+
+          // Determine region from seed zone
+          const seed = Number(d.properties.SEED_ZONE);
+          const region = getPhysioRegion(seed) || "Unknown Region";
+
+          tooltip
+            .style("display", "block")   // ⭐ IMPORTANT
+            .style("opacity", 1)
+            .html(`
+            <strong>Region:</strong> ${region}<br/>
+            <strong>Seed Zone:</strong> ${d.properties.SEED_ZONE}<br/>
+            <strong>Category:</strong> ${densityCategory}<br/>
+            <strong>Fires:</strong> ${d.properties.fire_count}<br/>
+            <strong>Density:</strong> ${d3.format(".6f")(density)}
+        `);
         })
 
-        .on("mousemove", e => {
-          tooltip.style("left", e.clientX + 12 + "px")
-            .style("top", e.clientY + 12 + "px");
+        .on("mousemove", (event) => {
+          tooltip
+            .style("left", (event.clientX + 12) + "px")
+            .style("top", (event.clientY + 12) + "px");
         })
-        .on("mouseleave", () => tooltip.style("opacity", 0));
+
+        .on("mouseleave", () => {
+          tooltip
+            .style("opacity", 0)
+            .style("display", "none");   // ⭐ IMPORTANT
+        });
+
 
       // LABELS
       mapGroup.selectAll("text")
@@ -161,17 +182,33 @@ function drawPrecipMap(svgId) {
         .attr("stroke", "#334155")
         .attr("stroke-width", 1.2)
         .on("mouseenter", (event, d) => {
-          tooltip.style("opacity", 1).html(`
-          <strong>Region:</strong> ${d.properties.physio_region}<br/>
-          <strong>Seed Zone:</strong> ${d.properties.SEED_ZONE}<br/>
-          <strong>Avg Precip:</strong> ${d3.format(".1f")(d.properties.Weighted_Avg_Precipitation)} mm
+          const precip = d.properties.Weighted_Avg_Precipitation ?? 0;
+          const color = colorScale(precip);
+          const category = labels[colors.indexOf(color)];
+
+          tooltip
+            .style("display", "block")
+            .style("opacity", 1)
+            .html(`
+            <strong>Region:</strong> ${d.properties.physio_region}<br/>
+            <strong>Seed Zone:</strong> ${d.properties.SEED_ZONE}<br/>
+            <strong>Category:</strong> ${category}<br/>
+            <strong>Avg Precip:</strong> ${d3.format(".1f")(precip)} mm
         `);
         })
-        .on("mousemove", e => {
-          tooltip.style("left", e.clientX + 12 + "px")
-            .style("top", e.clientY + 12 + "px");
+
+        .on("mousemove", (event) => {
+          tooltip
+            .style("left", (event.clientX + 12) + "px")
+            .style("top", (event.clientY + 12) + "px");
         })
-        .on("mouseleave", () => tooltip.style("opacity", 0));
+
+        .on("mouseleave", () => {
+          tooltip
+            .style("opacity", 0)
+            .style("display", "none");
+        });
+
 
       mapGroup.selectAll("text")
         .data(data.features)
@@ -262,5 +299,5 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     alignMap("#map-left");
     alignMap("#map-right");
-  }, 200);
+  }, 600);
 });
