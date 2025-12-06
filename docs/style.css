@@ -82,6 +82,13 @@ html, body {
   overflow: hidden;        /* ✅ prevents spill outside */
 }
 
+.column-left svg {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+}
+
 .column-left img {
   width: 100%;
   max-width: 720px;
@@ -383,11 +390,11 @@ svg {
   pointer-events: none;
 }
 
-#adventure-fire-wrapper {
+#adventure-fire-chart {
   position: relative;
   overflow-y: auto;
   max-height: 80vh;
-  padding-top: 3rem;
+  margin-top: 2rem;
 }
 
 #adventure-fire-chart h3 {
@@ -396,7 +403,6 @@ svg {
   z-index: 10;
   background: white;
   padding: 0.5rem 0;
-  margin: 0 0 1rem 0;
 }
 #adventure-veg-wrapper {
   position: relative;
@@ -533,3 +539,43 @@ footer {
   letter-spacing: 0.04em;
 }
 
+/* ============================= */
+/* 🧾 FIRE + PRECIP MAPS */
+/* ============================= */
+#fire-precip-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 2rem;
+  align-items: start;
+}
+
+/* LEFT COLUMN — fire map closer to the left edge */
+#fire-precip-section .column-left {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* RIGHT COLUMN — keep aligned */
+#fire-precip-section .column-right {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Make BOTH SVGs scale uniformly */
+#fire-precip-section svg {
+  width: 100%;
+  height: auto;
+  max-width: 600px;     /* adjust if you want them larger/smaller */
+}
+
+/* Optional: force uniform aspect ratio if one looks stretched */
+#fire-precip-section svg {
+  aspect-ratio: 1 / 1.25;   /* tweak if needed */
+}
+
+/* Stack on mobile */
+@media (max-width: 900px) {
+  #fire-precip-section {
+    grid-template-columns: 1fr;
+  }
+}

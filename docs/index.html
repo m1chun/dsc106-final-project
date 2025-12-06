@@ -64,7 +64,14 @@
   <!-- ✅ SEED ZONES -->
   <section class="step two-column-step">
     <div class="column-left">
-      <svg id="fire-map"></svg>
+
+      <!-- ===================== -->
+      <!-- MODE 1: SIDE BY SIDE -->
+      <!-- ===================== -->
+      <div id="side-by-side" class="mode active-map-mode">
+        <svg id="fire-map"></svg>
+      </div>
+
     </div>
 
     <div class="column-right">
@@ -176,6 +183,16 @@
     </div>
   </section>
 
+  <!-- ✅ FIRE + PRECIP MAPS -->
+  <section id="fire-precip-section" class="step two-column-step">
+    <div class="column-left">
+      <svg id="map-left"></svg>
+    </div>
+
+    <div class="column-right">
+      <svg id="map-right"></svg>
+    </div>
+  </section>
 
   <!-- =============================== -->
   <!-- ✅ REGION ADVENTURE MODE -->
@@ -202,6 +219,7 @@
         <div class="step" data-adventure-step="fire">
           <h2>Fire Behavior</h2>
           <p id="adventure-fire"></p>
+          <div id="adventure-fire-chart"></div>
         </div>
 
         <div class="step" data-adventure-step="precip">
@@ -228,10 +246,7 @@
 
         <!-- ✅ STEP 2: FIRE VIZ -->
         <div class="adventure-view hidden" id="adventure-view-fire">
-          <div id="adventure-fire-wrapper">
-            <svg id="adventure-fire-map"></svg>
-            <div id="adventure-fire-chart"></div>
-          </div>
+          <svg id="adventure-fire-map"></svg>
         </div>
 
         <!-- ✅ STEP 3: PRECIP VIZ (✅ FIXED) -->
@@ -260,6 +275,7 @@
   <div class="tooltip"></div>
 
   <!-- ✅ SCRIPTS -->
+  <script src="side-by-side-maps.js"></script>
   <script src="fire-density.js"></script>
   <script src="physio-zones.js"></script>
   <script src="physio-chooser.js"></script>

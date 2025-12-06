@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const legend = svg.append("g")
                 .attr("class", "fire-legend")
-                .attr("transform", `translate(${width - 315}, 40)`);
+                .attr("transform", `translate(${width - 360}, 40)`);
 
             // ✅ TITLE
             legend.append("text")
@@ -131,15 +131,20 @@ document.addEventListener("DOMContentLoaded", function () {
                     const densityColor = densityColorScale(density);
                     const densityCategory = densityLabels[densityColors.indexOf(densityColor)];
 
+                    // ⭐ NEW: determine region from seed zone
+                    const seed = Number(d.properties.SEED_ZONE);
+                    const region = getPhysioRegion(seed) || "Unknown Region";
+
                     tooltip
                         .style("display", "block")
                         .style("opacity", 1)
                         .html(`
-              <strong>Seed Zone:</strong> ${d.properties.SEED_ZONE}<br/>
-              <strong>Category:</strong> ${densityCategory}<br/>
-              <strong>Fires:</strong> ${d.properties.fire_count}<br/>
-              <strong>Density:</strong> ${d3.format(".6f")(density)}
-            `);
+            <strong>Region:</strong> ${region}<br/>
+            <strong>Seed Zone:</strong> ${d.properties.SEED_ZONE}<br/>
+            <strong>Category:</strong> ${densityCategory}<br/>
+            <strong>Fires:</strong> ${d.properties.fire_count}<br/>
+            <strong>Density:</strong> ${d3.format(".6f")(density)}
+        `);
                 })
 
                 .on("mousemove", (event) => {

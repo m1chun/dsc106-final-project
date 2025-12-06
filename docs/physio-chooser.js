@@ -69,7 +69,11 @@ document.addEventListener("DOMContentLoaded", () => {
     "socal-mountains": "SoCal Mountains"
   };
 
+  // =====================================
+  //  LOAD + DRAW MAP
+  // =====================================
   d3.json("ca-seed-zones.geojson").then(data => {
+    
     g.selectAll("path")
       .data(data.features)
       .join("path")
@@ -82,20 +86,25 @@ document.addEventListener("DOMContentLoaded", () => {
       .style("pointer-events", "all")
       .style("transition", "opacity 0.15s ease, fill 0.15s ease")
 
-      // ✅ HOVER ON MAP
+      // =============================
+      //  ⭐ FIXED TOOLTIP HANDLERS
+      // =============================
       .on("mouseenter", function (event, d) {
+
         const regionName = getPhysioRegion(d.properties.SEED_ZONE);
 
-        const regionKey = Object.keys(displayMap).find(
-          key => displayMap[key] === regionName
-        );
+        // highlight selection
+        const regionKey = Object.keys(displayMap)
+          .find(k => displayMap[k] === regionName);
 
         highlightRegion(regionKey);
 
-        // ✅ SHOW TOOLTIP
+        // show tooltip
         d3.select(".tooltip")
           .style("opacity", 1)
-          .html(regionName);
+          .html(`
+            <strong>Region:</strong> ${regionName}
+          `);
       })
 
       .on("mousemove", function (event) {
@@ -104,32 +113,26 @@ document.addEventListener("DOMContentLoaded", () => {
           .style("top", event.clientY + 12 + "px");
       })
 
+      .on("mouseleave", function () {
+        // only hide when leaving a PATH, not the SVG
+        d3.select(".tooltip").style("opacity", 0);
+        clearHighlight();
+      });
 
     setupChooserHover();
-
-    svg.on("mouseleave", () => {
-      clearHighlight();
-      d3.select(".tooltip").style("opacity", 0);
-    });
-
-
-
   });
 
+  // =====================================
+  //  REGION LIST INTERACTION
+  // =====================================
   function setupChooserHover() {
     const items = document.querySelectorAll(".region-preview-list li");
 
     items.forEach(li => {
       const regionKey = li.dataset.region;
 
-      li.addEventListener("mouseenter", () => {
-        highlightRegion(regionKey);
-      });
-
-      li.addEventListener("mouseleave", () => {
-        clearHighlight();
-      });
-
+      li.addEventListener("mouseenter", () => highlightRegion(regionKey));
+      li.addEventListener("mouseleave", () => clearHighlight());
       li.addEventListener("click", () => {
         if (typeof enterRegionAdventure === "function") {
           enterRegionAdventure(regionKey);
@@ -138,26 +141,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // =====================================
+  //  HIGHLIGHT & RESET HELPERS
+  // =====================================
   function highlightRegion(regionKey) {
     const target = displayMap[regionKey];
     const paths = d3.select("#map-chooser").selectAll("path");
 
-    // Reset everything
     paths
       .classed("map-glow", false)
       .style("opacity", 0.15)
       .attr("fill", "#e5e7eb")
       .attr("stroke-width", 1);
 
-    // Highlight target region
     paths
       .filter(d => getPhysioRegion(d.properties.SEED_ZONE) === target)
-      .classed("map-glow", true)       // ✅ THIS ADDS THE GLOW
+      .classed("map-glow", true)
       .style("opacity", 1)
       .attr("fill", regionColors[target])
       .attr("stroke-width", 2.5);
   }
-
 
   function clearHighlight() {
     d3.select("#map-chooser")
@@ -167,7 +170,5 @@ document.addEventListener("DOMContentLoaded", () => {
       .attr("fill", "#e5e7eb")
       .attr("stroke-width", 1);
   }
-
-
 
 });

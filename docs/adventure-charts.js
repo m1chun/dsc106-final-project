@@ -110,79 +110,111 @@ window.drawAdventureFireView = function (regionKey) {
 // =======================================
 function drawSingleFireBar({ container, label, value, max, color }) {
 
-  const width = container.node().clientWidth;
-  const height = 90;
+    const width = container.node().clientWidth;
+    const height = 90;
 
-  const margin = { top: 10, right: 70, bottom: 28, left: 200 };
+    const margin = { top: 10, right: 70, bottom: 28, left: 200 };
 
-  const svg = container.append("svg")
-    .attr("width", width)
-    .attr("height", height);
+    const svg = container.append("svg")
+        .attr("width", width)
+        .attr("height", height);
 
-  // ✅ SCALE
-  const x = d3.scaleLinear()
-    .domain([0, max * 1.05])
-    .range([margin.left, width - margin.right])
-    .clamp(true);
+    // ✅ SCALE
+    const x = d3.scaleLinear()
+        .domain([0, max * 1.05])
+        .range([margin.left, width - margin.right])
+        .clamp(true);
 
-  // ✅ THICK BAR
-  const barHeight = 26;
-  const barY = height / 2 - barHeight / 2;
+    // ✅ THICK BAR
+    const barHeight = 26;
+    const barY = height / 2 - barHeight / 2;
 
-  svg.append("rect")
-    .attr("x", margin.left)
-    .attr("y", barY)
-    .attr("height", barHeight)
-    .attr("width", x(value) - margin.left)
-    .attr("rx", 10)
-    .attr("fill", color || "#4682b4");
+    // ===============================
+    // ✅ BAR WITH TOOLTIP INTERACTION
+    // ===============================
+    const tooltip = d3.select(".tooltip");
 
-  // ✅ Metric label (left)
-  svg.append("text")
-    .attr("x", margin.left - 16)
-    .attr("y", height / 2 + 5)
-    .attr("text-anchor", "end")
-    .attr("font-size", "14px")
-    .attr("font-weight", "700")
-    .text(label);
+    svg.append("rect")
+        .attr("x", margin.left)
+        .attr("y", barY)
+        .attr("height", barHeight)
+        .attr("width", x(value) - margin.left)
+        .attr("rx", 10)
+        .attr("fill", color || "#4682b4")
+        .style("cursor", "pointer")
 
-  // ✅ X Axis
-  const axis = d3.axisBottom(x)
-    .ticks(5)
+        // 🔥 Hover ON
+        .on("mouseenter", (event) => {
+            tooltip
+                .style("display", "block")
+                .style("opacity", 1)
+                .html(`
+                <strong>${label}</strong><br>
+                Value: ${value.toFixed(2)}
+            `);
+        })
 
-  svg.append("g")
-    .attr("transform", `translate(0, ${height - margin.bottom})`)
-    .call(axis);
+        // 🔥 Move tooltip with mouse
+        .on("mousemove", (event) => {
+            tooltip
+                .style("left", (event.clientX + 12) + "px")
+                .style("top", (event.clientY + 12) + "px");
+        })
 
-  // ======================================
-  // ✅ MEAN REFERENCE LINE + LABEL
-  // ======================================
-  const meanValue = label.includes("Fires")
-    ? window.globalFireMean
-    : window.globalBurnedMean;
+        // 🔥 Hover OFF
+        .on("mouseleave", () => {
+            tooltip
+                .style("opacity", 0)
+                .style("display", "none");
+        });
 
-  const meanX = x(meanValue);
 
-  // ✅ Dashed vertical line
-  svg.append("line")
-    .attr("x1", meanX)
-    .attr("x2", meanX)
-    .attr("y1", barY - 6)
-    .attr("y2", barY + barHeight + 6)
-    .attr("stroke", "#111")
-    .attr("stroke-width", 1.5)
-    .attr("stroke-dasharray", "4,3")
-    .attr("opacity", 0.8);
+    // ✅ Metric label (left)
+    svg.append("text")
+        .attr("x", margin.left - 16)
+        .attr("y", height / 2 + 5)
+        .attr("text-anchor", "end")
+        .attr("font-size", "14px")
+        .attr("font-weight", "700")
+        .text(label);
 
-  // ✅ Mean label above line
-  svg.append("text")
-    .attr("x", meanX)
-    .attr("y", barY - 10)
-    .attr("text-anchor", "middle")
-    .attr("font-size", "11px")
-    .attr("font-weight", "700")
-    .attr("fill", "#111")
-    .text(`State Mean: ${meanValue.toFixed(2)}`);
+    // ✅ X Axis
+    const axis = d3.axisBottom(x)
+        .ticks(5)
+
+    svg.append("g")
+        .attr("transform", `translate(0, ${height - margin.bottom})`)
+        .call(axis);
+
+    // ======================================
+    // ✅ MEAN REFERENCE LINE + LABEL
+    // ======================================
+    const meanValue = label.includes("Fires")
+        ? window.globalFireMean
+        : window.globalBurnedMean;
+
+    const meanX = x(meanValue);
+
+    // ✅ Dashed vertical line
+    svg.append("line")
+        .attr("x1", meanX)
+        .attr("x2", meanX)
+        .attr("y1", barY - 6)
+        .attr("y2", barY + barHeight + 6)
+        .attr("stroke", "#111")
+        .attr("stroke-width", 1.5)
+        .attr("stroke-dasharray", "4,3")
+        .attr("opacity", 0.8);
+
+    // ✅ Mean label above line
+    svg.append("text")
+        .attr("x", meanX)
+        .attr("y", barY - 10)
+        .attr("text-anchor", "middle")
+        .attr("font-size", "11px")
+        .attr("font-weight", "700")
+        .attr("fill", "#111")
+        .text(`State Mean: ${meanValue.toFixed(2)}`);
 }
 
 

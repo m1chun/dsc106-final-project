@@ -149,26 +149,40 @@ document.addEventListener("DOMContentLoaded", () => {
         .on("mouseenter", function (event, d) {
           d3.select(this).classed("map-glow", true);
 
+          // ✅ always (re)select or create tooltip
+          let tooltip = d3.select(".tooltip");
+          if (tooltip.empty()) {
+            tooltip = d3.select("body")
+              .append("div")
+              .attr("class", "tooltip");
+          }
+
           const seed = Number(d.properties.SEED_ZONE);
           const region = getPhysioRegion(seed);
 
-          d3.select(".tooltip")
+          tooltip
+            .style("display", "block")   // ⭐ FIX: ensure it's visible
             .style("opacity", 1)
             .html(`
-              <strong>Seed Zone:</strong> ${seed}<br>
-              <strong>Physio Region:</strong> ${region}
-            `);
+      <strong>Seed Zone:</strong> ${seed}<br>
+      <strong>Physio Region:</strong> ${region}
+    `);
         })
 
         .on("mousemove", function (event) {
-          d3.select(".tooltip")
+          let tooltip = d3.select(".tooltip");
+          tooltip
             .style("left", event.clientX + 14 + "px")
             .style("top", event.clientY + 14 + "px");
         })
 
         .on("mouseleave", function () {
           d3.select(this).classed("map-glow", false);
-          d3.select(".tooltip").style("opacity", 0);
+
+          let tooltip = d3.select(".tooltip");
+          tooltip
+            .style("opacity", 0)
+            .style("display", "none");   // optional, matches fire map behavior
         });
 
       addLabels(data);

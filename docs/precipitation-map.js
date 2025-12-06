@@ -112,8 +112,8 @@ document.addEventListener("DOMContentLoaded", function () {
             .style("display", "block")
             .style("opacity", 1)
             .html(`
-              <strong>Seed Zone:</strong> ${d.properties.SEED_ZONE}<br/>
               <strong>Region:</strong> ${d.properties.physio_region}<br/>
+              <strong>Seed Zone:</strong> ${d.properties.SEED_ZONE}<br/>
               <strong>Avg Precip:</strong> ${d3.format(".1f")(d.properties.Weighted_Avg_Precipitation)} mm
             `);
         })
