@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ============================
-  // ✅ ADVENTURE SCROLL CONTROLLER (VIEW SWITCHING)
+  // ✅ ADVENTURE SCROLL CONTROLLER (VIEW SWITCHING) 
   // ============================
   function initAdventureScroll(regionKey) {
 
@@ -167,6 +167,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
           renderRegionVegetationInfo(regionKey); // ✅ ADD THIS
 
+        }
+
+        if (stepType === "case") {
+          document.getElementById("adventure-view-case").classList.remove("hidden");
+          drawAdventureCaseStudy(regionKey);
         }
 
       });
@@ -227,7 +232,7 @@ window.drawAdventureVegView = function (regionKey) {
   }
 
   // ================================
-  // ✅ LEFT COLUMN — IMAGES + CAPTIONS
+  // ✅ LEFT COLUMN — IMAGES + CAPTIONS VEG
   // ================================
   const vegImages = data.vegImages || [];
 
@@ -248,9 +253,8 @@ window.drawAdventureVegView = function (regionKey) {
     imageBox.appendChild(figure);
   });
 
-
   // ================================
-  // ✅ RIGHT COLUMN — TEXT
+  // ✅ RIGHT COLUMN — TEXT VEG
   // ================================
   if (data.vegDetails) {
     const { resistantTitle, resistant, flammableTitle, flammable } = data.vegDetails;
@@ -290,4 +294,44 @@ window.drawAdventureVegView = function (regionKey) {
       textBox.appendChild(ul);
     }
   }
+};
+
+
+// ================================
+// // ✅ CASE STUDY FIRES
+// ================================
+window.caseStudyFires = {
+  "north-coast-redwood": "Mendocino Lightning Complex (2008)",
+  "central-coast": "CZU Lightning Complex (2020)",
+  "north-coast-interior": "August Complex (2020)",
+  "west-slope-sierra": "Camp Fire (2018)",
+  "east-slope-sierra": "Loyalton Fire (2020)",
+  "great-basin": "Beckwourth Complex (2021)",
+  "central-valley": "Butte Fire (2015)",
+  "socal-desert": "Apple Fire (2020)",
+  "socal-mountains": "Bobcat Fire (2020)"
+};
+
+window.drawAdventureCaseStudy = function (regionKey) {
+
+  const fireName = window.caseStudyFires[regionKey] || "Case Study Fire";
+
+  // ============================
+  // CLEAR OLD CONTENT
+  // ============================
+  d3.select("#adventure-case-map").selectAll("*").remove();
+  const info = document.getElementById("adventure-case-info");
+  info.innerHTML = "";
+
+  // ============================
+  // UPDATE TITLES + TEXT
+  // ============================
+  document.getElementById("adventure-case-title").textContent =
+    `Case Study: ${fireName}`;
+
+  // ============================
+  // DRAW SIMPLE PLACEHOLDER SVG
+  // ============================
+  const svg = d3.select("#adventure-case-map");
+  svg.attr("width", 600).attr("height", 400);
 };

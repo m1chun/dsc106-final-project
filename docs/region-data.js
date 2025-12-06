@@ -303,6 +303,7 @@ window.regionData = {
     title: "Welcome to the West Slope Cascades-Sierra!",
     description: "Snow-driven fuel cycles and large fast-moving crown fires. Contains the west slope Cascades-Sierra from Oregon south to Tehachapi Mountains – bounded by Central Valley to the west and by the crest of the Cascades and Sierra Nevada to the east.",
     fire: "Heavy winter snowpack leads to massive summer fuel loads.",
+    precip: "This region sees high winter precipitation, much of it as snow. Moist winters can delay the fire season, but large forests combined with warming summers create abundant, dry fuel later in the year. Lightning storms are more common here, and the combination of heavy fuels and seasonal drying contributes to high-severity fires, especially in drought years.",
     veg: "Dense conifer forests with highly flammable understory.",
     image: "overview-images/west-sierras.jpeg",
 
@@ -335,6 +336,7 @@ window.regionData = {
     title: "Welcome to the East Slope Cascades-Sierra!",
     description: "Dry rain-shadow ecosystems with wind-driven fire spread. Contains the east slope of the Cascades-Sierra from Oregon south to Walker Pass in Kern County.",
     fire: "Wind-driven fires spread rapidly through sparse dry fuels.",
+    precip: "The east side of the Sierra sits in a rain shadow, resulting in much lower precipitation. Vegetation is more sparse — sagebrush, pine, and dry woodland. With limited moisture, fuels are dry for most of the year, making this region prone to fast-moving fires, especially when winds funnel down the slope.",
     veg: "Dry pine forests and shrub steppe.",
     image: "overview-images/east-sierras.jpeg",
 

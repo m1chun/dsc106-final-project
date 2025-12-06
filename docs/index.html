@@ -149,6 +149,47 @@
 
   </section>
 
+  <!-- ✅ Findings -->
+  <section class="step two-column-step">
+    <div class="column-left">
+      <img src="conclusion-img.png">
+    </div>
+
+    <div class="column-right">
+      <h3>Surprising Findings</h3>
+
+      <ol>
+        <li>
+          <strong>Wow so Surprising #1</strong>
+          <p>words</p>
+        </li>
+
+        <li>
+          <strong>Wow so Surprising #2</strong>
+          <p>Parks, forests, hiking areas, and landmarks burn.</p>
+
+        </li>
+
+        <li>
+          <strong>Wow so Surprising #3</strong>
+          <p>Fires release huge amounts of carbon.</p>
+        </li>
+      </ol>
+      </p>
+    </div>
+  </section>
+
+  <!-- ✅ FIRE + PRECIP MAPS -->
+  <section id="fire-precip-section" class="step two-column-step">
+    <div class="column-left">
+      <svg id="map-left"></svg>
+    </div>
+
+    <div class="column-right">
+      <svg id="map-right"></svg>
+    </div>
+  </section>
+
   <!-- ✅ CONCLUSION -->
   <section class="step two-column-step">
     <div class="column-left">
@@ -177,47 +218,6 @@
           <strong>Wildfires affect climate—and climate affects everyone</strong>
           <p>Fires release huge amounts of carbon.</p>
           <p>Bigger fires make climate change worse, and climate change increases fire risk in a feedback loop.</p>
-        </li>
-      </ol>
-      </p>
-    </div>
-  </section>
-
-  <!-- ✅ FIRE + PRECIP MAPS -->
-  <section id="fire-precip-section" class="step two-column-step">
-    <div class="column-left">
-      <svg id="map-left"></svg>
-    </div>
-
-    <div class="column-right">
-      <svg id="map-right"></svg>
-    </div>
-  </section>
-
-    <!-- ✅ Findings -->
-  <section class="step two-column-step">
-    <div class="column-left">
-      <img src="conclusion-img.png">
-    </div>
-
-    <div class="column-right">
-      <h3>Surprising Findings</h3>
-
-      <ol>
-        <li>
-          <strong>Wow so Surprising #1</strong>
-          <p>words</p>
-        </li>
-
-        <li>
-          <strong>Wow so Surprising #2</strong>
-          <p>Parks, forests, hiking areas, and landmarks burn.</p>
-      
-        </li>
-
-        <li>
-          <strong>Wow so Surprising #3</strong>
-          <p>Fires release huge amounts of carbon.</p>
         </li>
       </ol>
       </p>
@@ -257,11 +257,23 @@
           <p id="adventure-precip"></p>
         </div>
 
-
         <div class="step" data-adventure-step="veg">
           <h2>Vegetation & Fuel</h2>
           <p id="adventure-veg"></p>
           <div id="adventure-veg-info" class="veg-info-box"></div>
+        </div>
+
+        <div class="step" data-adventure-step="case">
+          <h2 id="adventure-case-title">Case Study:</h2>
+
+          <!-- RIGHT TEXT -->
+          <p id="adventure-case"></p>
+
+          <!-- LEFT MAP -->
+          <svg id="adventure-case-map"></svg>
+
+          <!-- RIGHT PANEL INFO -->
+          <div id="adventure-case-info"></div>
         </div>
 
       </div>
@@ -288,6 +300,10 @@
         <div class="adventure-view hidden" id="adventure-view-veg">
           <div id="adventure-veg-images" class="veg-image-grid"></div>
           <div id="adventure-veg-chart"></div>
+        </div>
+
+        <!-- ✅ STEP 5: CASE STUDY (✅ FIXED) -->
+        <div class="adventure-view hidden" id="adventure-view-case">
         </div>
 
       </div>
