@@ -1,3 +1,11 @@
+// =========================================
+// 🩹 AUTO-RELOAD ONE TIME (GitHub Pages fix)
+// =========================================
+if (!sessionStorage.getItem("pageReloaded")) {
+    sessionStorage.setItem("pageReloaded", "true");
+    window.location.reload();
+}
+
 window.hardResetAdventureState = function () {
 
   console.log("🔥 HARD RESET ADVENTURE");

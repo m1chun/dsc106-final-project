@@ -89,10 +89,13 @@ document.addEventListener("DOMContentLoaded", () => {
       // =============================
       //  ⭐ FIXED TOOLTIP HANDLERS
       // =============================
-      // =============================
-      //  ⭐ FIXED TOOLTIP HANDLERS
-      // =============================
       .on("mouseenter", function (event, d) {
+
+        // Always guarantee tooltip exists
+        let tooltip = d3.select(".tooltip");
+        if (tooltip.empty()) {
+          tooltip = d3.select("body").append("div").attr("class", "tooltip");
+        }
 
         const seed = Number(d.properties.SEED_ZONE);
         const regionName = getPhysioRegion(seed);
@@ -100,35 +103,34 @@ document.addEventListener("DOMContentLoaded", () => {
         const regionKey = Object.keys(displayMap)
           .find(k => displayMap[k] === regionName);
 
-        // highlight the region polygons
         highlightRegion(regionKey);
 
-        // ⭐ Always show tooltip using reliable pattern
-        const tooltip = d3.select(".tooltip");
         tooltip
           .style("display", "block")
           .style("opacity", 1)
-          .html(`
-        ${regionName}<br/>
-      `);
+          .html(`<strong>${regionName}</strong>`);
       })
 
       .on("mousemove", function (event) {
-        d3.select(".tooltip")
-          .style("left", (event.clientX + 12) + "px")
-          .style("top", (event.clientY + 12) + "px");
+
+        let tooltip = d3.select(".tooltip");
+        if (tooltip.empty()) return; // safety check
+
+        tooltip
+          .style("left", event.clientX + 12 + "px")
+          .style("top", event.clientY + 12 + "px");
       })
 
       .on("mouseleave", function () {
-        // ⭐ Hide tooltip cleanly
-        d3.select(".tooltip")
-          .style("opacity", 0)
-          .style("display", "none");
 
-        clearHighlight();  // Un-highlight map
+        let tooltip = d3.select(".tooltip");
+        if (!tooltip.empty()) {
+          tooltip.style("opacity", 0).style("display", "none");
+        }
+
+        clearHighlight();
       });
-
-
+      
     setupChooserHover();
   });
 
