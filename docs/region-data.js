@@ -7,6 +7,7 @@ window.regionData = {
     title: "Welcome to the North Coast Redwoods!",
     description: "Fog-dominated coastal redwood forests with massive biomass and rare but extreme fires. Stretches from Oregon to Monterey Bay.",
     fire: "Fires are infrequent but can become catastrophic during drought years due to heavy fuel loads.",
+    precip: "This region receives some of the highest rainfall in California, with cool, moisture-rich marine air keeping fuels damp for most of the year. High precipitation supports dense redwood and mixed conifer forests, but also produces large amounts of biomass. Wildfires are infrequent here, but when drought years hit, the accumulated fuels can allow fires to become unusually intense.",
     veg: "Dominated by coastal redwood forests, dense understory, and heavy organic material.",
     image: "overview-images/north-redwods-overview.jpg",
 
@@ -31,6 +32,7 @@ window.regionData = {
     title: "Welcome to the Central Coast!",
     description: "Mediterranean climate with chaparral and frequent human-caused ignitions. Coast range from Sacramento-San Joaquin Rivers south to southern California Mountains; coastal strip from Monterey Bay to Santa Barbara; all of Channel Islands.",
     fire: "Frequent fast-moving brush fires driven by dry summers and offshore winds.",
+    precip: "The Central Coast has moderate rainfall, heavily influenced by marine fog. The moisture limits fire spread for much of the year, but long summer dry seasons cause fast curing of coastal scrub and grasslands. As a result, fires tend to be frequent but lower-severity, driven more by winds and seasonal dryness than by long-term fuel buildup.",
     veg: "Chaparral, oak woodlands, and grasslands dominate the region.",
     image: "overview-images/central-coast.jpeg",
 
@@ -79,6 +81,7 @@ window.regionData = {
     title: "Welcome to the North Coast Interior!",
     description: "Hotter inland forests with high lightning ignition potential. Runs from summit of Siskiyous south to San Francisco Bay, between coastal fog belt and Sacramento valley; isolated zone (390) on coast at Cape Mendocino.",
     fire: "High lightning ignition rates cause frequent summer wildfires.",
+    precip: "Separated from coastal moisture, this interior zone receives significantly less precipitation and experiences hotter summers. Lower rainfall leads to drier forests and chaparral, increasing flammability. Fire density is typically higher than the coastal zones, as the region dries out quickly and supports fuels that ignite easily under summer heat.",
     veg: "Mixed conifer forests with dry understory fuels.",
     image: "overview-images/north-coast-int.jpg",
 
@@ -120,6 +123,7 @@ window.regionData = {
     title: "Welcome to the Central Valley!",
     description: "Agricultural lowlands with fragmented fire behavior.",
     fire: "Localized agricultural and urban-interface fires.",
+    precip: "Though surrounded by mountains, the valley itself receives low to moderate precipitation. Much of the landscape is agricultural, but natural grasslands cure early in the season. Fire spread tends to be fast but mostly grass-driven, with lower severity compared to forested regions—but still dangerous due to winds and open terrain.",
     veg: "Farmland, grasslands, irrigation networks.",
     image: "overview-images/central-valley.jpeg",
 
@@ -173,6 +177,7 @@ window.regionData = {
     title: "Welcome to the Great Basin!",
     description: "High desert grasslands with flashy fine fuels.",
     fire: "Fast-moving grass fires driven by wind.",
+    precip: "This region receives very little rainfall and is dominated by shrubs and grasses. Low precipitation keeps fuels thin but consistently dry. Wildfires here often spread rapidly through fine, continuous fuels, especially in years when rare wet seasons allow grasses to proliferate and then cure.",
     veg: "Sagebrush, grasses, and desert shrubs.",
     image: "overview-images/great-basin.jpg",
 
@@ -211,6 +216,7 @@ window.regionData = {
     title: "Welcome to the SoCal Desert!",
     description: "Sparse vegetation but extreme wind-driven events.",
     fire: "Fires spread explosively during Santa Ana wind events.",
+    precip: "The desert receives extremely low precipitation, creating sparse but highly flammable vegetation after rare rainfall events. Fires here are often episodic—big bursts of growth after wet winters followed by extreme drying—leading to explosive, wind-driven fires when ignition occurs.",
     veg: "Joshua trees, desert shrubs, sparse grasses.",
     image: "overview-images/socal-desert.jpeg",
 
@@ -256,6 +262,7 @@ window.regionData = {
     title: "Welcome to the SoCal Mountains!",
     description: "Conifer forests with steep terrain and explosive fire spread. Contains most of natural conifer stands found in southern California.",
     fire: "Extreme slope-driven crown fires.",
+    precip: "These mountains receive much more precipitation than the lowlands, often including winter snow. However, hot, dry summers and Santa Ana winds dry out the chaparral and forest understory. This combination of high biomass + extreme seasonal drying makes this region one of California’s most fire-prone, with both frequent and high-intensity burns.",
     veg: "Mixed pine, fir, and chaparral ecosystems.",
     image: "overview-images/socal-mountains.jpeg",
 

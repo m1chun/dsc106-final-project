@@ -2,8 +2,8 @@
 // 🩹 AUTO-RELOAD ONE TIME (GitHub Pages fix)
 // =========================================
 if (!sessionStorage.getItem("pageReloaded")) {
-    sessionStorage.setItem("pageReloaded", "true");
-    window.location.reload();
+  sessionStorage.setItem("pageReloaded", "true");
+  window.location.reload();
 }
 
 window.hardResetAdventureState = function () {
@@ -105,6 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("adventure-description").textContent = data.description;
       document.getElementById("adventure-fire").textContent = data.fire;
       document.getElementById("adventure-veg").textContent = data.veg;
+      document.getElementById("adventure-precip").textContent = data.precip;
       document.getElementById("adventure-overview-image").src = data.image;
       renderRegionVegetationInfo(region);
     });
@@ -153,11 +154,17 @@ document.addEventListener("DOMContentLoaded", () => {
           drawAdventureFireView?.(regionKey); // you can implement this later
         }
 
+        if (stepType === "precip") {
+          document.getElementById("adventure-view-precip")
+            .classList.remove("hidden");
+
+          drawAdventurePrecipMap(regionKey);
+        }
+
         if (stepType === "veg") {
           document.getElementById("adventure-view-veg")
             .classList.remove("hidden");
 
-          drawAdventureVegView(regionKey); // you can implement this later
           renderRegionVegetationInfo(regionKey); // ✅ ADD THIS
 
         }
@@ -219,9 +226,6 @@ window.drawAdventureVegView = function (regionKey) {
     return;
   }
 
-  // ================================
-  // ✅ LEFT COLUMN — IMAGES
-  // ================================
   // ================================
   // ✅ LEFT COLUMN — IMAGES + CAPTIONS
   // ================================

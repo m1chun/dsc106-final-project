@@ -34,7 +34,7 @@ window.globalFireMean = 6.24;
 window.globalBurnedMean = 43.75;
 
 // =======================================
-// ✅ ADVENTURE FIRE VIEW — TWO SEPARATE SVGS
+// ✅ ADVENTURE FIRE VIEW — TWO SEPARATE BAR CHART SVGS
 // =======================================
 window.drawAdventureFireView = function (regionKey) {
 
@@ -218,106 +218,106 @@ function drawSingleFireBar({ container, label, value, max, color }) {
 }
 
 
-// ================================
-// ✅ GLOBAL RARE VEGETATION SCALES
-// ================================
-window.globalRareVegDensityMax = null;
-window.globalRareVegPercentMax = null;
+// // ================================
+// // ✅ GLOBAL RARE VEGETATION SCALES
+// // ================================
+// window.globalRareVegDensityMax = null;
+// window.globalRareVegPercentMax = null;
 
-d3.json("./final_combined_data.geojson").then(seedData => {
+// d3.json("./final_combined_data.geojson").then(seedData => {
 
-    const regions = d3.group(seedData.features, d => d.properties.physio_region);
+//     const regions = d3.group(seedData.features, d => d.properties.physio_region);
 
-    let maxDensity = 0;
-    let maxPercent = 0;
+//     let maxDensity = 0;
+//     let maxPercent = 0;
 
-    regions.forEach(features => {
-        const totalArea = d3.sum(features, f => f.properties.zone_area_km2);
-        const totalRareVeg = d3.sum(features, f => f.properties.rare_vegetation_area_km2 || 0);
+//     regions.forEach(features => {
+//         const totalArea = d3.sum(features, f => f.properties.zone_area_km2);
+//         const totalRareVeg = d3.sum(features, f => f.properties.rare_vegetation_area_km2 || 0);
 
-        const density = (totalRareVeg / totalArea) * 100;
-        const percent = d3.mean(features, f => f.properties.percent_zone_rare_veg || 0);
+//         const density = (totalRareVeg / totalArea) * 100;
+//         const percent = d3.mean(features, f => f.properties.percent_zone_rare_veg || 0);
 
-        maxDensity = Math.max(maxDensity, density);
-        maxPercent = Math.max(maxPercent, percent);
-    });
+//         maxDensity = Math.max(maxDensity, density);
+//         maxPercent = Math.max(maxPercent, percent);
+//     });
 
-    window.globalRareVegDensityMax = maxDensity;
-    window.globalRareVegPercentMax = maxPercent;
-});
+//     window.globalRareVegDensityMax = maxDensity;
+//     window.globalRareVegPercentMax = maxPercent;
+// });
 
-// =======================================
-// ✅ ADVENTURE VEGETATION VIEW — MATCHES FIRE STYLE
-// =======================================
-window.drawAdventureVegView = function (regionKey) {
+// // =======================================
+// // ✅ ADVENTURE VEGETATION VIEW — MATCHES FIRE STYLE
+// // =======================================
+// window.drawAdventureVegView = function (regionKey) {
 
-    const displayMap = {
-        "north-coast-redwood": "North Coast Redwood",
-        "central-coast": "Central Coast",
-        "north-coast-interior": "North Coast Interior",
-        "west-slope-sierra": "West Slope Cascades–Sierra",
-        "east-slope-sierra": "East Slope Cascades–Sierra",
-        "great-basin": "Great Basin",
-        "central-valley": "Central Valley",
-        "socal-desert": "SoCal Desert",
-        "socal-mountains": "SoCal Mountains"
-    };
+//     const displayMap = {
+//         "north-coast-redwood": "North Coast Redwood",
+//         "central-coast": "Central Coast",
+//         "north-coast-interior": "North Coast Interior",
+//         "west-slope-sierra": "West Slope Cascades–Sierra",
+//         "east-slope-sierra": "East Slope Cascades–Sierra",
+//         "great-basin": "Great Basin",
+//         "central-valley": "Central Valley",
+//         "socal-desert": "SoCal Desert",
+//         "socal-mountains": "SoCal Mountains"
+//     };
 
-    const selectedRegion = displayMap[regionKey];
-    if (!selectedRegion) return;
+//     const selectedRegion = displayMap[regionKey];
+//     if (!selectedRegion) return;
 
-    d3.json("final_combined_data.geojson").then(seedData => {
+//     d3.json("final_combined_data.geojson").then(seedData => {
 
-        const regions = d3.group(seedData.features, d => d.properties.physio_region);
-        const features = regions.get(selectedRegion);
-        if (!features) return;
+//         const regions = d3.group(seedData.features, d => d.properties.physio_region);
+//         const features = regions.get(selectedRegion);
+//         if (!features) return;
 
-        // ================================
-        // ✅ AGGREGATE VEG METRICS
-        // ================================
-        const totalArea = d3.sum(features, f => f.properties.zone_area_km2);
-        const totalRareVeg = d3.sum(features, f => f.properties.rare_vegetation_area_km2 || 0);
+//         // ================================
+//         // ✅ AGGREGATE VEG METRICS
+//         // ================================
+//         const totalArea = d3.sum(features, f => f.properties.zone_area_km2);
+//         const totalRareVeg = d3.sum(features, f => f.properties.rare_vegetation_area_km2 || 0);
 
-        const rareVegDensity = (totalRareVeg / totalArea) * 100;
-        const rareVegPercent = d3.mean(features, f => f.properties.percent_zone_rare_veg || 0);
+//         const rareVegDensity = (totalRareVeg / totalArea) * 100;
+//         const rareVegPercent = d3.mean(features, f => f.properties.percent_zone_rare_veg || 0);
 
-        // ================================
-        // ✅ HARD RESET CONTAINER
-        // ================================
-        const container = d3.select("#adventure-veg-chart");
-        container.interrupt();
-        container.selectAll("*").remove();
+//         // ================================
+//         // ✅ HARD RESET CONTAINER
+//         // ================================
+//         const container = d3.select("#adventure-veg-chart");
+//         container.interrupt();
+//         container.selectAll("*").remove();
 
-        // ✅ Title (matches fire)
-        container.append("h3")
-            .style("text-align", "center")
-            .style("margin-bottom", "1rem")
-            .text("Rare & Sensitive Vegetation by Region");
+//         // ✅ Title (matches fire)
+//         container.append("h3")
+//             .style("text-align", "center")
+//             .style("margin-bottom", "1rem")
+//             .text("Rare & Sensitive Vegetation by Region");
 
-        // ================================
-        // ✅ SVG 1 — RARE VEG DENSITY (MATCHES FIRE)
-        // ================================
-        drawSingleFireBar({
-            container: container,
-            label: "Rare Veg km² per 100 km²",
-            value: rareVegDensity,
-            max: window.globalRareVegDensityMax,
-            color: window.regionColors[selectedRegion]
-        });
+//         // ================================
+//         // ✅ SVG 1 — RARE VEG DENSITY (MATCHES FIRE)
+//         // ================================
+//         drawSingleFireBar({
+//             container: container,
+//             label: "Rare Veg km² per 100 km²",
+//             value: rareVegDensity,
+//             max: window.globalRareVegDensityMax,
+//             color: window.regionColors[selectedRegion]
+//         });
 
-        // ================================
-        // ✅ SVG 2 — % RARE VEGETATION (MATCHES FIRE)
-        // ================================
-        drawSingleFireBar({
-            container: container,
-            label: "% of Region Rare Vegetation",
-            value: rareVegPercent,
-            max: window.globalRareVegPercentMax,
-            color: window.regionColors[selectedRegion]
-        });
+//         // ================================
+//         // ✅ SVG 2 — % RARE VEGETATION (MATCHES FIRE)
+//         // ================================
+//         drawSingleFireBar({
+//             container: container,
+//             label: "% of Region Rare Vegetation",
+//             value: rareVegPercent,
+//             max: window.globalRareVegPercentMax,
+//             color: window.regionColors[selectedRegion]
+//         });
 
-    });
-};
+//     });
+// };
 
 // =======================================
 // ✅ ADVENTURE FIRE DENSITY MAP (FULL STATE + REGION EMPHASIS)
@@ -345,7 +345,7 @@ window.drawAdventureFireDensityMap = function (regionKey) {
     const container = svg.node().parentElement;
 
     const width = container.clientWidth;
-    const height = 520;
+    const height = 700;
 
     const margin = { top: 40, right: 20, bottom: 20, left: 20 };
     const innerWidth = width - margin.left - margin.right;
@@ -365,10 +365,10 @@ window.drawAdventureFireDensityMap = function (regionKey) {
 
     // ✅ Projection (statewide)
     const projection = d3.geoAlbers()
-        .center([1, 36])
+        .center([1, 36.5])
         .rotate([120.5, 0])
         .parallels([34, 40.5])
-        .scale(innerWidth * 4)
+        .scale(innerWidth * 5)
         .translate([innerWidth / 2, innerHeight / 2]);
 
     const path = d3.geoPath().projection(projection);
@@ -478,7 +478,7 @@ function drawAdventureFireLegend(svg, width) {
 
     const legend = svg.append("g")
         .attr("class", "adventure-fire-legend")
-        .attr("transform", `translate(${width - 245}, 20)`);
+        .attr("transform", `translate(${width - 300}, 20)`);
 
     // ✅ TITLE
     legend.append("text")
@@ -486,7 +486,7 @@ function drawAdventureFireLegend(svg, width) {
         .attr("y", 18)
         .attr("text-anchor", "middle")
         .attr("font-weight", "700")
-        .attr("font-size", "13px")
+        .attr("font-size", "14px")
         .attr("fill", "#7f1d1d")
         .text("Fire Density");
 
@@ -511,4 +511,181 @@ function drawAdventureFireLegend(svg, width) {
         .text(d => `${d.label}`);
 }
 
+// =======================================
+// ✅ ADVENTURE PRECIPITATION MAP (REGION EMPHASIS)
+// =======================================
+window.drawAdventurePrecipMap = function (regionKey) {
+
+    const displayMap = {
+        "north-coast-redwood": "North Coast Redwood",
+        "central-coast": "Central Coast",
+        "north-coast-interior": "North Coast Interior",
+        "west-slope-sierra": "West Slope Cascades–Sierra",
+        "east-slope-sierra": "East Slope Cascades–Sierra",
+        "great-basin": "Great Basin",
+        "central-valley": "Central Valley",
+        "socal-desert": "SoCal Desert",
+        "socal-mountains": "SoCal Mountains"
+    };
+
+    const selectedRegion = displayMap[regionKey];
+    if (!selectedRegion) return;
+
+    const svg = d3.select("#adventure-precip-map");
+    if (svg.empty()) return;
+
+    const container = svg.node().parentElement;
+
+    const width = container.clientWidth;
+    const height = 600;
+
+    const margin = { top: 40, right: 20, bottom: 20, left: 20 };
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
+
+    svg.selectAll("*").remove();
+
+    svg
+        .attr("width", width)
+        .attr("height", height)
+        .style("display", "block");
+
+    const g = svg.append("g")
+        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+    drawAdventurePrecipLegend(svg, width);
+
+    // ================================
+    // PROJECTION
+    // ================================
+    const projection = d3.geoIdentity().reflectY(true);
+    const path = d3.geoPath(projection);
+
+    // ================================
+    // PRECIP SCALE (same as main map)
+    // ================================
+    const thresholds = [50, 100, 150, 200];
+    const colors = ["#eff6ff", "#bfdbfe", "#60a5fa", "#2563eb", "#1e3a8a"];
+
+    const colorScale = d3.scaleThreshold().domain(thresholds).range(colors);
+
+    // ================================
+    // TOOLTIP
+    // ================================
+    let tooltip = d3.select(".tooltip");
+    if (tooltip.empty()) {
+        tooltip = d3.select("body").append("div").attr("class", "tooltip");
+    }
+
+    // ================================
+    // LOAD + DRAW
+    // ================================
+    d3.json("final_combined_data.geojson").then(data => {
+
+        projection.fitSize([innerWidth, innerHeight], data);
+
+        g.selectAll("path")
+            .data(data.features)
+            .join("path")
+            .attr("d", path)
+
+            // NORMAL COLORING
+            .attr("fill", d => colorScale(d.properties.Weighted_Avg_Precipitation ?? 0))
+
+            .attr("stroke", "#334155")
+            .attr("stroke-width", 1.3)
+
+            // ⭐ DIM NON-SELECTED REGIONS
+            .style("opacity", d => {
+                const seed = Number(d.properties.SEED_ZONE);
+                const region = getPhysioRegion(seed);
+                return region === selectedRegion ? 1 : 0.2;
+            })
+
+            // ⭐ THICKEN BORDER FOR SELECTED REGION
+            .attr("stroke-width", d => {
+                const seed = Number(d.properties.SEED_ZONE);
+                const region = getPhysioRegion(seed);
+                return region === selectedRegion ? 2.5 : 1.3;
+            })
+
+            // =============================
+            // TOOLTIP WITH CATEGORY
+            // =============================
+            .on("mouseenter", (event, d) => {
+
+                const precip = d.properties.Weighted_Avg_Precipitation ?? 0;
+
+                // ⭐ Determine numeric category using thresholds
+                let category = "";
+                if (precip < 50) category = "Very Low";
+                else if (precip < 100) category = "Low";
+                else if (precip < 150) category = "Moderate";
+                else if (precip < 200) category = "High";
+                else category = "Very High";
+
+                tooltip
+                    .style("display", "block")
+                    .style("opacity", 1)
+                    .html(`
+            <strong>Seed Zone:</strong> ${d.properties.SEED_ZONE}<br/>
+            <strong>Category:</strong> ${category}<br/>
+            <strong>Avg Precip:</strong> ${d3.format(".1f")(precip)} mm
+        `);
+            })
+            .on("mousemove", event => {
+                tooltip
+                    .style("left", event.clientX + 12 + "px")
+                    .style("top", event.clientY + 12 + "px");
+            })
+            .on("mouseleave", () => {
+                tooltip
+                    .style("opacity", 0)
+                    .style("display", "none");
+            });
+
+    });
+};
+
+function drawAdventurePrecipLegend(svg, width) {
+    const thresholds = [50, 100, 150, 200];
+    const colors = ["#eff6ff", "#bfdbfe", "#60a5fa", "#2563eb", "#1e3a8a"];
+    const labels = [
+        "Very Low (0–50 mm)",
+        "Low (50–100 mm)",
+        "Moderate (100–150 mm)",
+        "High (150–200 mm)",
+        "Very High (>200 mm)"
+    ];
+
+    const legend = svg.append("g")
+        .attr("class", "adventure-precip-legend")
+        .attr("transform", `translate(${width - 325}, 20)`);
+
+    legend.append("text")
+        .attr("x", 90)
+        .attr("y", 18)
+        .attr("text-anchor", "middle")
+        .attr("font-size", "14px")
+        .attr("font-weight", "700")
+        .attr("fill", "#1e3a8a")
+        .text("Avg Precipitation");
+
+    labels.forEach((label, i) => {
+        const row = legend.append("g")
+            .attr("transform", `translate(10, ${30 + i * 20})`);
+
+        row.append("rect")
+            .attr("width", 14)
+            .attr("height", 14)
+            .attr("fill", colors[i])
+            .attr("stroke", "#111");
+
+        row.append("text")
+            .attr("x", 20)
+            .attr("y", 11)
+            .attr("font-size", "11px")
+            .text(label);
+    });
+}
 
