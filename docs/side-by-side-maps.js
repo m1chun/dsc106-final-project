@@ -213,7 +213,7 @@ function drawPrecipMap(svgId) {
       mapGroup.selectAll("text")
         .data(data.features)
         .join("text")
-        .attr("x", d => path.centroid(d)[0] - 12)
+        .attr("x", d => path.centroid(d)[0] - 15)
         .attr("y", d => path.centroid(d)[1])
         .text(d => d.properties.SEED_ZONE)
         .attr("font-size", "14px")
