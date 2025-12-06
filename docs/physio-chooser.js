@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
           .style("display", "block")
           .style("opacity", 1)
           .html(`
-        <strong>Region:</strong> ${regionName}<br/>
+        ${regionName}<br/>
       `);
       })
 

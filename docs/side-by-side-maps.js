@@ -299,5 +299,5 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     alignMap("#map-left");
     alignMap("#map-right");
-  }, 600);
+  }, 1000);
 });
