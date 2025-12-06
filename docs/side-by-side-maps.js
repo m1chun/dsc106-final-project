@@ -288,6 +288,43 @@ function alignMap(svgId) {
   g.attr("transform", `translate(${finalX}, ${finalY}) scale(${scale})`);
 }
 
+async function reloadFirePrecipMaps() {
+  console.log("🔄 Soft reload: Fire + Precip maps");
+
+  // Clear SVGs
+  d3.select("#map-left").selectAll("*").remove();
+  d3.select("#map-right").selectAll("*").remove();
+
+  // Redraw maps
+  await drawFireMap("#map-left");
+  await drawPrecipMap("#map-right");
+
+  // Re-align after redraw
+  setTimeout(() => {
+    alignMap("#map-left");
+    alignMap("#map-right");
+  }, 400);
+}
+
+function setupFirePrecipScrollReload() {
+  let hasReloaded = false;
+
+  const section = document.getElementById("fire-precip-section");
+  if (!section) return;
+
+  window.addEventListener("scroll", () => {
+    if (hasReloaded) return;
+
+    const rect = section.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // Trigger reload when section is mostly visible on screen
+    if (rect.top < windowHeight * 0.7 && rect.bottom > windowHeight * 0.2) {
+      hasReloaded = true;
+      reloadFirePrecipMaps();
+    }
+  });
+}
 
 /******************************************************
  *                MAIN EXECUTION
@@ -300,4 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
     alignMap("#map-left");
     alignMap("#map-right");
   }, 1000);
+
+  // ⭐ ADD THIS — reload maps once user scrolls near them
+  setupFirePrecipScrollReload();
 });
