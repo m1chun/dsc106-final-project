@@ -28,7 +28,26 @@ window.regionData = {
         src: "veg-images/redwoods.webp",
         caption: "Coast Redwood"
       }
-    ]
+    ],
+    caseStudy: {
+      descriptionTitle: "Description",
+      keyPoints: [
+        "Started as 38 separate fires that merged together",
+        "Caused by thunderstorms and spread by high winds",
+        "Spread across Mendocino and Shasta forests",
+        "Dense forests made the fire spread rapidly"
+      ],
+
+      statsTitle: "Fire Statistics",
+      stats: [
+        "Burned approximately 1% of all of California, 1 million acres",
+        "Took 2 months to contain",
+      ],
+
+      images: [
+        { src: "case-study-images/august-complex.png", caption: "2020 August Complex" }
+      ]
+    }
   },
 
   // ============================
@@ -87,7 +106,26 @@ window.regionData = {
         src: "veg-images/eucalyptus.webp",
         caption: "Eucalyptus Tree"
       }
-    ]
+    ],
+    caseStudy: {
+      descriptionTitle: "Description",
+      keyPoints: [
+        "Located mostly in Big Sur",
+        "Because that region is so wet in the Winter, the fire was eventually extinguished after several days of torrential rain",
+        "Fire took so long to contain because the wetter forest took longer to stop burning"
+      ],
+
+      statsTitle: "Fire Statistics",
+      stats: [
+        "Burned over 100,000 acres",
+        "Took 2 months to contain",
+      ],
+
+      images: [
+        { src: "case-study-images/dolan-fire.png", caption: "Firefighters" },
+        { src: "case-study-images/dolan-fire-2.png", caption: "Dolan Fire 2020" }
+      ]
+    }
   },
 
   // ============================
@@ -129,7 +167,28 @@ window.regionData = {
         src: "veg-images/conifer-pine.png",
         caption: "Coniferous Pine"
       }
-    ]
+    ],
+    caseStudy: {
+      descriptionTitle: "Description",
+      keyPoints: [
+        "Grew from Shasta Forest to Redding",
+        "With an environment similar to North Coast Redwoods, the fire spread rapidly through dense forests",
+        "Generated a powerful fire tornado with 143 mph winds, killing at least three people",
+        "Fueled by extreme heat, drought conditions, steep terrain, and strong winds"
+      ],
+
+      statsTitle: "Fire Statistics",
+      stats: [
+        "Caused a lot of infrastructure damage ($1.7 billion)",
+        "Burned ~230,000 acres",
+        "Took 2 months to contain",
+      ],
+
+      images: [
+        { src: "case-study-images/carr-fire.png", caption: "Carr Fire 2018" },
+        { src: "case-study-images/carr-fire-2.png", caption: "Carr Fire 2018" },
+      ]
+    }
   },
 
   // ============================
@@ -193,7 +252,24 @@ window.regionData = {
         src: "veg-images/almond-trees.jpg",
         caption: "Almond Trees"
       }
-    ]
+    ],
+    caseStudy: {
+      descriptionTitle: "Description",
+      keyPoints: [
+        "Characterized by fast winds and little fuel so burned out quickly",
+        "The Central Valley experiences frequent fires but few large ones due to how heavily irrigated it is"
+      ],
+
+      statsTitle: "Fire Statistics",
+      stats: [
+        "This fire was small (only 5000 acres)",
+        "Burned for 4 days"
+      ],
+
+      images: [
+        { src: "case-study-images/grant-fire.png", caption: "Firefighters during the Grant Line Fire" }
+      ]
+    }
   },
 
   // ============================
@@ -234,7 +310,7 @@ window.regionData = {
         ]
       }
     ],
-      vegImages: [
+    vegImages: [
       {
         src: "veg-images/bristlecone-pine.webp",
         caption: "Methuseleh: Famous for being one of the oldest trees in the world at 4,856-year-old"
@@ -243,7 +319,23 @@ window.regionData = {
         src: "veg-images/utah-juniper.jpg",
         caption: "Utah Juniper"
       }
-    ]
+    ],
+    caseStudy: {
+      descriptionTitle: "Description",
+      keyPoints: [
+        "Part of the issue is that the Great Basin section of California is small and so most large fires are mostly in other regions",
+        "But importantly, the environment in the Great Basin is not very suitable for large fires. It's mostly shrubs and patchy growth, not large swaths of green"
+      ],
+
+      statsTitle: "Fire Statistics",
+      stats: [
+        "N/A"
+      ],
+
+      images: [
+        { src: "case-study-images/great-basin.png", caption: "Great Basin" }
+      ]
+    }
   },
 
   // ============================
@@ -289,7 +381,28 @@ window.regionData = {
         src: "veg-images/ca-fan-palm.png",
         caption: "California Fan Palm"
       }
-    ]
+    ],
+    caseStudy: {
+      descriptionTitle: "Description",
+      keyPoints: [
+        "Ignited by a gender reveal party, the couple was ordered to pay $1,789,972 in restitution",
+        "Burned mostly in San Bernardino/Riverside",
+        "Was centered at the mountainous beginning of the SoCal Desert, where there's more fuel",
+        "Fueled by dry grass, sagebrush, and timber, with high temperatures (around 105°F), low humidity (around 15%), and strong winds"
+      ],
+
+      statsTitle: "Fire Statistics",
+      stats: [
+        "Burned for 2.5 months",
+        "Burned 22,744 acres",
+        "Cost around $42.27 million for suppression efforts"
+      ],
+
+      images: [
+        { src: "case-study-images/el-dorado.png", caption: "El Dorado Fire Start" },
+        { src: "case-study-images/el-dorado-2.png", caption: "Helicopter During The El Dorado Fire" }
+      ]
+    }
   },
 
   // ============================
@@ -340,7 +453,26 @@ window.regionData = {
         src: "veg-images/jeffrey-pine.webp",
         caption: "Jeffrey Pine"
       }
-    ]
+    ],
+    caseStudy: {
+      descriptionTitle: "Description",
+      keyPoints: [
+        "Fueled by large swaths of chaparral (a shrub environment native to California) in Los Angeles Forest",
+        "Burned in LA county in the Santa Clarita Valley",
+      ],
+
+      statsTitle: "Fire Statistics",
+      stats: [
+        "Lasted 2 weeks, fires in more urban areas tend to be suppressed faster",
+        "Burned over 41,000 acres",
+        "Cost $29.8 million to supress"
+      ],
+
+      images: [
+        { src: "case-study-images/sand-fire.png", caption: "Sand Fire 2016" },
+        { src: "case-study-images/sand-fire-2.png", caption: "Sand Fire 2016" }
+      ]
+    }
   },
 
   // ============================
@@ -383,7 +515,28 @@ window.regionData = {
         src: "veg-images/western-hemlock.webp",
         caption: "Conifers: E.g. Western Hemlock"
       }
-    ]
+    ],
+    caseStudy: {
+      descriptionTitle: "Description",
+      keyPoints: [
+        "Burned for 4 months",
+        "First fire to be known to cross the crest of the Sierra Nevadas",
+        "Mountainous region was expected to contain the fire, but once the crest was breached, it spread rapidly",
+        "Large swaths of dry, dead forest caused by years of fire suppression led to the fire being so intense"
+      ],
+
+      statsTitle: "Fire Statistics",
+      stats: [
+        "Burned nearly 1 million acres (963,309 acres)",
+        "Burned for over 100 days",
+        "Cost $637 million to suppress",
+      ],
+
+      images: [
+        { src: "case-study-images/dixie-fire.png", caption: "Dixie Fire Map 2021" },
+        { src: "case-study-images/dixie-fire-2.png", caption: "Dixie Fire 2021" },
+      ]
+    }
   },
 
   // ============================
@@ -416,7 +569,7 @@ window.regionData = {
         ]
       }
     ],
-      vegImages: [
+    vegImages: [
       {
         src: "veg-images/ponderosa-pine.jpg",
         caption: "Ponderosa Pine Tree"
@@ -425,7 +578,28 @@ window.regionData = {
         src: "veg-images/western-juniper.jpg",
         caption: "Conifers: E.g. Western Juniper"
       }
-    ]
+    ],
+    caseStudy: {
+      descriptionTitle: "Description",
+      keyPoints: [
+        "Burned for 4 months",
+        "Centered in Plumas forest",
+        "Started by thunderstorm",
+        "Like other fires that year, unusually dry forests led to fast spreading fire",
+        "Exacerbated by dense fuel and strong winds"
+      ],
+
+      statsTitle: "Fire Statistics",
+      stats: [
+        "Burned over 318,000 acres",
+        "Destroyed over 2,300 structures, including most of the town of Berry Creek, making it one of California's deadliest and most destructive wildfires",
+        "Cost $637 million to suppress",
+      ],
+
+      images: [
+        { src: "case-study-images/north-complex.png", caption: "North Complex Fire 2020" }
+      ]
+    }
   }
 
 };

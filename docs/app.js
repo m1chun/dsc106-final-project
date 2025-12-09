@@ -302,37 +302,92 @@ window.drawAdventureVegView = function (regionKey) {
 // // ✅ CASE STUDY FIRES
 // ================================
 window.caseStudyFires = {
-  "north-coast-redwood": "Mendocino Lightning Complex (2008)",
-  "central-coast": "CZU Lightning Complex (2020)",
-  "north-coast-interior": "August Complex (2020)",
-  "west-slope-sierra": "Camp Fire (2018)",
-  "east-slope-sierra": "Loyalton Fire (2020)",
-  "great-basin": "Beckwourth Complex (2021)",
-  "central-valley": "Butte Fire (2015)",
-  "socal-desert": "Apple Fire (2020)",
-  "socal-mountains": "Bobcat Fire (2020)"
+  "north-coast-redwood": "August Complex (2020)",
+  "central-coast": "Dolan Fire (2020)",
+  "north-coast-interior": "Carr Fire (2018)",
+  "west-slope-sierra": "Dixie Fire (2021)",
+  "east-slope-sierra": "North Complex Fire (2020)",
+  "great-basin": "No Notable Fires",
+  "central-valley": "Grant Line Fire (2020)",
+  "socal-desert": "El Dorado Fire (2020)",
+  "socal-mountains": "Sand Fire (2016)"
 };
 
 window.drawAdventureCaseStudy = function (regionKey) {
 
+  const region = window.regionData?.[regionKey];
+  const cs = region?.caseStudy;
+
+  if (!cs) {
+    console.warn("⚠️ No case study object for:", regionKey);
+    return;
+  }
+
+  // ======================================================
+  // 1️⃣  LEFT PANEL TITLE + SUMMARY
+  // ======================================================
   const fireName = window.caseStudyFires[regionKey] || "Case Study Fire";
 
-  // ============================
-  // CLEAR OLD CONTENT
-  // ============================
-  d3.select("#adventure-case-map").selectAll("*").remove();
-  const info = document.getElementById("adventure-case-info");
-  info.innerHTML = "";
-
-  // ============================
-  // UPDATE TITLES + TEXT
-  // ============================
   document.getElementById("adventure-case-title").textContent =
     `Case Study: ${fireName}`;
 
-  // ============================
-  // DRAW SIMPLE PLACEHOLDER SVG
-  // ============================
-  const svg = d3.select("#adventure-case-map");
-  svg.attr("width", 600).attr("height", 400);
+  const summaryBox = document.getElementById("adventure-case-summary");
+  summaryBox.innerHTML = "";
+
+
+  // Optional description text
+  if (cs.description) {
+    summaryBox.innerHTML += `<p>${cs.description}</p>`;
+  }
+
+  // ======================================================
+  // 2️⃣  LEFT PANEL — KEY POINTS + STATS
+  // ======================================================
+  const infoBox = document.getElementById("adventure-case-info");
+  infoBox.innerHTML = "";
+
+  // ---- Key Points ----
+  if (cs.keyPoints?.length > 0) {
+    infoBox.innerHTML += `<h4>Key Points</h4>`;
+    const ul = document.createElement("ul");
+    cs.keyPoints.forEach(pt => {
+      const li = document.createElement("li");
+      li.textContent = pt;
+      ul.appendChild(li);
+    });
+    infoBox.appendChild(ul);
+  }
+
+  // ---- Stats ----
+  if (cs.statsTitle) {
+    infoBox.innerHTML += `<h4>${cs.statsTitle}</h4>`;
+  }
+
+  if (cs.stats?.length > 0) {
+    const ul = document.createElement("ul");
+    cs.stats.forEach(st => {
+      const li = document.createElement("li");
+      li.textContent = st;
+      ul.appendChild(li);
+    });
+    infoBox.appendChild(ul);
+  }
+
+  // ======================================================
+  // 3️⃣  RIGHT PANEL — IMAGES ONLY
+  // ======================================================
+  const imgBox = document.getElementById("adventure-case-images");
+  imgBox.innerHTML = "";
+
+  cs.images?.forEach(img => {
+    const fig = document.createElement("figure");
+    fig.className = "veg-figure";
+
+    fig.innerHTML = `
+      <img src="${img.src}" alt="${img.caption}">
+      <figcaption>${img.caption}</figcaption>
+    `;
+
+    imgBox.appendChild(fig);
+  });
 };
