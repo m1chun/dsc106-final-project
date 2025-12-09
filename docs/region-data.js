@@ -22,6 +22,12 @@ window.regionData = {
           "Dryer and hotter conditions increase wildfire risk and puts these forests in danger"
         ]
       }
+    ],
+    vegImages: [
+      {
+        src: "veg-images/redwoods.webp",
+        caption: "Coast Redwood"
+      }
     ]
   },
 
@@ -70,6 +76,16 @@ window.regionData = {
         bullets: [
           "Bark sheds which can spread the fire easily"
         ]
+      }
+    ],
+    vegImages: [
+      {
+        src: "veg-images/ca-oaks.webp",
+        caption: "California Oak"
+      },
+      {
+        src: "veg-images/eucalyptus.webp",
+        caption: "Eucalyptus Tree"
       }
     ]
   },
@@ -167,6 +183,16 @@ window.regionData = {
           "Waxy leaves helps retain moisture, making them less flammable"
         ]
       }
+    ],
+    vegImages: [
+      {
+        src: "veg-images/cottonwood.jpg",
+        caption: "Cottonwood"
+      },
+      {
+        src: "veg-images/almond-trees.jpg",
+        caption: "Almond Trees"
+      }
     ]
   },
 
@@ -187,7 +213,8 @@ window.regionData = {
         label: "Flammable",
         bullets: [
           "Mature trees have thick bark that protects them from fires",
-          "Intense fires still pose as a big risk"
+          "Intense fires still pose as a big risk",
+          "The Bristlecone Pine, Methuseleh, found in the Great Basin is recognized as the non-clonal tree with the greatest confirmed age in the world"
         ]
       },
       {
@@ -205,6 +232,16 @@ window.regionData = {
           "High elevation and arid environment makes this area less prone to fires",
           "High-intensity fires are still quite dangerous to vegetation"
         ]
+      }
+    ],
+      vegImages: [
+      {
+        src: "veg-images/bristlecone-pine.webp",
+        caption: "Methuseleh: Famous for being one of the oldest trees in the world at 4,856-year-old"
+      },
+      {
+        src: "veg-images/utah-juniper.jpg",
+        caption: "Utah Juniper"
       }
     ]
   },
@@ -293,6 +330,16 @@ window.regionData = {
           "Santa Ana winds accelerate fires and spread them farther"
         ]
       }
+    ],
+    vegImages: [
+      {
+        src: "veg-images/ponderosa-pine-2.jpg",
+        caption: "Ponderosa Pine"
+      },
+      {
+        src: "veg-images/jeffrey-pine.webp",
+        caption: "Jeffrey Pine"
+      }
     ]
   },
 
@@ -326,6 +373,16 @@ window.regionData = {
           "Often contain dead branches which can spread the fire faster"
         ]
       }
+    ],
+    vegImages: [
+      {
+        src: "veg-images/sequoia.webp",
+        caption: "Giant Sequoia"
+      },
+      {
+        src: "veg-images/western-hemlock.webp",
+        caption: "Conifers: E.g. Western Hemlock"
+      }
     ]
   },
 
@@ -357,6 +414,16 @@ window.regionData = {
           "Contains oils and resins",
           "Often contain dead branches which can spread the fire faster"
         ]
+      }
+    ],
+      vegImages: [
+      {
+        src: "veg-images/ponderosa-pine.jpg",
+        caption: "Ponderosa Pine Tree"
+      },
+      {
+        src: "veg-images/western-juniper.jpg",
+        caption: "Conifers: E.g. Western Juniper"
       }
     ]
   }

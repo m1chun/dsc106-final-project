@@ -166,6 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .classList.remove("hidden");
 
           renderRegionVegetationInfo(regionKey); // ✅ ADD THIS
+          drawAdventureVegView(regionKey);   // ⭐ ADD THIS LINE
 
         }
 
